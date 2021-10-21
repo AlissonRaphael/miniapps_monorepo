@@ -17,7 +17,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
 
   devServer: {
@@ -34,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx$/,
+        test: /\.(tsx|ts|jsx|js)$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -44,10 +44,18 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader','css-loader', 'sass-loader']
-      }
+        use: ['style-loader','css-loader']
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        exclude: /node_modules/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        }
+      },
     ]
   }
 }

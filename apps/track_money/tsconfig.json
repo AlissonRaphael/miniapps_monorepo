@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "typeRoots" : ["node_modules/@types", "src/types"],
 
     /* Projects */
     // "incremental": true,                              /* Enable incremental compilation */
