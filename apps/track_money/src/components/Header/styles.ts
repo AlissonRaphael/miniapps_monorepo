@@ -27,3 +27,20 @@ export const ContentStyle = styled.div`
     }
   }
 `
+
+export const LogoStyle = styled.div`
+  display: flex;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 2.2rem;
+  }
+
+  span {
+    margin-left: 12px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+`
