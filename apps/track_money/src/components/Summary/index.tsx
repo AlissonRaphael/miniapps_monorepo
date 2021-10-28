@@ -5,15 +5,13 @@ import Money from '../../assets/monetization_on_black_24dp.svg'
 
 const upArrow = {
   height: '30px',
-  filter: `invert(76%) sepia(36%) saturate(444%)
-          hue-rotate(108deg) brightness(88%) contrast(92%)`,
+  filter: `invert(64%) sepia(93%) saturate(306%) hue-rotate(106deg) brightness(87%) contrast(95%)`,
   transform: 'rotate(-90deg)'
 }
 
 const downArrow = {
   height: '30px',
-  filter: `invert(21%) sepia(98%) saturate(6644%)
-          hue-rotate(342deg) brightness(89%) contrast(92%)`,
+  filter: `invert(50%) sepia(34%) saturate(5298%) hue-rotate(332deg) brightness(114%) contrast(101%)`,
   transform: 'rotate(90deg)'
 }
 

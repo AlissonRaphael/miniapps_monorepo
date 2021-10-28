@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyle = styled.header`
-  background-color: var(--dark-blue);
+  background-color: var(--dark-salmon);
 `
 
 export const ContentStyle = styled.div`
@@ -18,13 +18,12 @@ export const ContentStyle = styled.div`
     height: 3rem;
     padding: 0 2rem;
     font-size: 1rem;
-    color: #fff;
-    background-color: var(--medium-blue);
+    background-color: var(--light-purple);
 
     transition: filter 0.3s;
 
     &:hover {
-      filter: brightness(0.8);
+      filter: brightness(1.1);
     }
   }
 `
