@@ -2,7 +2,11 @@ import { HeaderStyle, ContentStyle, LogoStyle } from './styles'
 
 import logo from '../../assets/logo.png'
 
-export function Header() {
+interface HeaderProps {
+  handleOpenNewTransactionModal: () => void;
+}
+
+export function Header({ handleOpenNewTransactionModal }: HeaderProps) {
   return (
     <HeaderStyle>
       <ContentStyle>
@@ -10,7 +14,12 @@ export function Header() {
           <img src={logo} alt="logo track money" />
           <span>track <strong>money</strong></span>
         </LogoStyle>
-        <button type="button">Nova transação</button>
+        <button
+          type="button"
+          onClick={handleOpenNewTransactionModal}
+        >
+          Nova transação
+        </button>
       </ContentStyle>
     </HeaderStyle>
   )
