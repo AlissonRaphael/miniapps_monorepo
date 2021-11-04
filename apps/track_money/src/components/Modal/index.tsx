@@ -1,6 +1,7 @@
 import ReactModal from 'react-modal'
 
-import { ContentStyle } from "./styles"
+import { FormStyle } from "./styles"
+import CloseIcon from '../../assets/close_black_24dp.svg'
 
 
 ReactModal.setAppElement('#root')
@@ -13,12 +14,25 @@ interface ModalProps {
 export function Modal({ isOpen, onRequestClose }: ModalProps){
   return (
     <ReactModal
+      className="react-modal-content"
+      overlayClassName="react-modal-overlay"
       isOpen={isOpen}
       onRequestClose={onRequestClose}
     >
-      <ContentStyle>
+      <button type="button" className="react-modal-close">
+        <img src={CloseIcon} alt="Botão fechar"/>
+      </button>
+      <FormStyle>
         <h2>Cadastrar transação</h2>
-      </ContentStyle>
+
+        <input type="text" placeholder="Título" />
+
+        <input type="number" placeholder="Valor" />
+
+        <input type="text" placeholder="Categoria"/>
+
+        <button type="submit">Cadastrar</button>
+      </FormStyle>
     </ReactModal>
   )
 } 
