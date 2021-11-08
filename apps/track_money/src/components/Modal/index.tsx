@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import ReactModal from 'react-modal'
 
-import { FormStyle, InputOutputStyle } from "./styles"
+import { FormStyle, InOutStyle, RadioButtonStyle } from "./styles"
 import CloseIcon from '../../assets/close_black_24dp.svg'
 import ArrowCircle from '../../assets/arrow_circle_black_24dp.svg'
 import { svgFilter } from "../../styles/svg-filters"
@@ -14,6 +15,8 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onRequestClose }: ModalProps){
+  const [type, setType] = useState('deposit')
+
   return (
     <ReactModal
       className="react-modal-content"
@@ -31,16 +34,16 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
 
         <input type="number" placeholder="Valor" />
 
-        <InputOutputStyle>
-          <button type="button">
+        <InOutStyle>
+          <RadioButtonStyle type="button" onClick={() => setType('deposit')} isActive={type === 'deposit'}>
             <img src={ArrowCircle} style={svgFilter.upArrow} alt="Entradas"/>
             <span>Entradas</span>
-          </button>
-          <button type="button">
+          </RadioButtonStyle>
+          <RadioButtonStyle type="button" onClick={() => setType('withdraw')} isActive={type === 'withdraw'}>
             <img src={ArrowCircle} style={svgFilter.downArrow} alt="Saidas"/>
             <span>Saidas</span>
-          </button>
-        </InputOutputStyle>
+          </RadioButtonStyle>
+        </InOutStyle>
 
         <input type="text" placeholder="Categoria"/>
 

@@ -45,37 +45,47 @@ export const FormStyle = styled.form`
   }
 `
 
-export const InputOutputStyle = styled.div`
+export const InOutStyle = styled.div`
   margin: 1rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+`
 
-  button {
-    border: 1px solid #d4d4d4;
-    border-radius: 0.25rem;
-    height: 4rem;
-    background-color: #e7e9ee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+interface RadioButtonProps {
+  isActive: boolean
+}
 
-    transition: border 0.3s;
+export const RadioButtonStyle = styled.button<RadioButtonProps>`
+  border: 1px solid #d4d4d4;
+  border-radius: 0.25rem;
+  height: 4rem;
+  background-color: ${(props) => props.isActive ? 'var(--light-yellow)' : '#e7e9ee' };
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    &:hover {
-      border: 1px solid #b4b4b4;
-    }
+  transition: border 0.3s;
+  animation: ${(props) => props.isActive ? 'loop .6s alternate infinite linear' : 'none' };
 
-    img {
-      height: 20px;
-      width: 20px;
-    }
+  &:hover {
+    border: 1px solid #b4b4b4;
+  }
 
-    span {
-      margin-left: 1rem;
-      display: inline-block;
-      font-size: 1rem;
-      color: var(--text-title);
-    }
+  img {
+    height: 20px;
+    width: 20px;
+  }
+
+  span {
+    margin-left: 1rem;
+    display: inline-block;
+    font-size: 1rem;
+    color: var(--text-title);
+  }
+
+  @keyframes loop {
+    from {filter: brightness(1)}
+    to {filter: brightness(1.05)}
   }
 `
