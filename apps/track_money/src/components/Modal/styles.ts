@@ -43,5 +43,39 @@ export const FormStyle = styled.form`
       filter: brightness(0.9);
     }
   }
+`
 
+export const InputOutputStyle = styled.div`
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  button {
+    border: 1px solid #d4d4d4;
+    border-radius: 0.25rem;
+    height: 4rem;
+    background-color: #e7e9ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: border 0.3s;
+
+    &:hover {
+      border: 1px solid #b4b4b4;
+    }
+
+    img {
+      height: 20px;
+      width: 20px;
+    }
+
+    span {
+      margin-left: 1rem;
+      display: inline-block;
+      font-size: 1rem;
+      color: var(--text-title);
+    }
+  }
 `
