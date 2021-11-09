@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import ReactModal from 'react-modal'
+
+import { api } from '../../services/api'
 
 import { FormStyle, InOutStyle, RadioButtonStyle } from "./styles"
 import CloseIcon from '../../assets/close_black_24dp.svg'
@@ -15,7 +17,14 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onRequestClose }: ModalProps){
+  const [title, setTitle] = useState('')
+  const [value, setValue] = useState(0)
   const [type, setType] = useState('deposit')
+  const [category, setCategory] = useState('')
+
+  function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault()
+  }
 
   return (
     <ReactModal
@@ -27,12 +36,22 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
       <button type="button" className="react-modal-close" onClick={onRequestClose}>
         <img src={CloseIcon} alt="Botão fechar"/>
       </button>
-      <FormStyle>
+      <FormStyle onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar transação</h2>
 
-        <input type="text" placeholder="Título" />
+        <input
+          type="text"
+          placeholder="Título"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
+        />
 
-        <input type="number" placeholder="Valor" />
+        <input
+          type="number"
+          placeholder="Valor"
+          value={value}
+          onChange={event => setValue(Number(event.target.value))}
+        />
 
         <InOutStyle>
           <RadioButtonStyle
@@ -55,7 +74,12 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
           </RadioButtonStyle>
         </InOutStyle>
 
-        <input type="text" placeholder="Categoria"/>
+        <input
+          type="text"
+          placeholder="Categoria"
+          value={category}
+          onChange={event => setCategory(event.target.value)}
+        />
 
         <button type="submit">Cadastrar</button>
       </FormStyle>
