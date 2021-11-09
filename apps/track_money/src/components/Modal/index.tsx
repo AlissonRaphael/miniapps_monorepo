@@ -35,11 +35,21 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
         <input type="number" placeholder="Valor" />
 
         <InOutStyle>
-          <RadioButtonStyle type="button" onClick={() => setType('deposit')} isActive={type === 'deposit'}>
+          <RadioButtonStyle
+            type="button"
+            onClick={() => setType('deposit')} 
+            isActive={type === 'deposit'}
+            color={'green'}
+          >
             <img src={ArrowCircle} style={svgFilter.upArrow} alt="Entradas"/>
             <span>Entradas</span>
           </RadioButtonStyle>
-          <RadioButtonStyle type="button" onClick={() => setType('withdraw')} isActive={type === 'withdraw'}>
+          <RadioButtonStyle
+            type="button"
+            onClick={() => setType('withdraw')}
+            isActive={type === 'withdraw'}
+            color={'red'}
+          >
             <img src={ArrowCircle} style={svgFilter.downArrow} alt="Saidas"/>
             <span>Saidas</span>
           </RadioButtonStyle>

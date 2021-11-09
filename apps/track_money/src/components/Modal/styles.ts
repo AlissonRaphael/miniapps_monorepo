@@ -53,14 +53,20 @@ export const InOutStyle = styled.div`
 `
 
 interface RadioButtonProps {
-  isActive: boolean
+  isActive: boolean,
+  color: 'green' | 'red'
+}
+
+const colors = {
+  green: 'rgba(51,204,149,0.2)',
+  red: 'rgba(229,46,77,0.3)'
 }
 
 export const RadioButtonStyle = styled.button<RadioButtonProps>`
   border: 1px solid #d4d4d4;
   border-radius: 0.25rem;
   height: 4rem;
-  background-color: ${(props) => props.isActive ? 'var(--light-yellow)' : '#e7e9ee' };
+  background-color: ${(props) => props.isActive ? colors[props.color] : '#e7e9ee' };
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +92,6 @@ export const RadioButtonStyle = styled.button<RadioButtonProps>`
 
   @keyframes loop {
     from {filter: brightness(1)}
-    to {filter: brightness(1.05)}
+    to {filter: brightness(1.07)}
   }
 `
