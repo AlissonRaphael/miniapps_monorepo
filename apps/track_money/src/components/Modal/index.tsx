@@ -18,12 +18,18 @@ interface ModalProps {
 
 export function Modal({ isOpen, onRequestClose }: ModalProps){
   const [title, setTitle] = useState('')
-  const [value, setValue] = useState(0)
+  const [amount, setAmount] = useState(0)
   const [type, setType] = useState('deposit')
   const [category, setCategory] = useState('')
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault()
+
+    const data = { title, amount, type, category, createdAt: new Date() }
+
+    api.post('/transactions', data)
+
+    onRequestClose()
   }
 
   return (
@@ -49,8 +55,8 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
         <input
           type="number"
           placeholder="Valor"
-          value={value}
-          onChange={event => setValue(Number(event.target.value))}
+          value={amount}
+          onChange={event => setAmount(Number(event.target.value))}
         />
 
         <InOutStyle>
