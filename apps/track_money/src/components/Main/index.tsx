@@ -13,7 +13,7 @@ interface TransactionInterface {
 }
 
 export function Main() {
-  const [transactions, setTransactions] = useState([])
+  const [transactions, setTransactions] = useState<TransactionInterface[]>([])
 
   useEffect(() => {
     api.get('/transactions')
@@ -34,16 +34,16 @@ export function Main() {
 
         <tbody>
           {
-            transactions.map(({id, title, amount, type, category, createdAt }: TransactionInterface) => {
-              return (
-                <tr key={id}>
-                  <td>{title}</td>
-                  <td className={type}>{`R$ ${amount}`}</td>
-                  <td>{category}</td>
-                  <td>{createdAt}</td>
-                </tr>
-              )
-            })
+            transactions.map(({id, title, amount, type, category, createdAt }) => (
+              <tr key={id}>
+                <td>{title}</td>
+                <td className={type}>
+                  { new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(amount) }
+                </td>
+                <td>{category}</td>
+                <td>{ new Intl.DateTimeFormat('pt-BR').format(new Date(createdAt)) }</td>
+              </tr>
+            ))
           }
         </tbody>
       </table>
