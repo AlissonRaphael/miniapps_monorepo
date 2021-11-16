@@ -9,7 +9,7 @@ import { TransactionsContext } from "../../Context"
 
 
 export function Summary(){
-  const data = useContext(TransactionsContext)
+  const { transactions } = useContext(TransactionsContext)
 
   return (
     <SummaryStyle>

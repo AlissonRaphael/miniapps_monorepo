@@ -1,12 +1,11 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useContext } from 'react'
 import ReactModal from 'react-modal'
-
-import { api } from '../../services/api'
 
 import { FormStyle, InOutStyle, RadioButtonStyle } from "./styles"
 import CloseIcon from '../../assets/close_black_24dp.svg'
 import ArrowCircle from '../../assets/arrow_circle_black_24dp.svg'
 import { svgFilter } from "../../styles/svg-filters"
+import { TransactionsContext } from '../../Context'
 
 
 ReactModal.setAppElement('#root')
@@ -17,6 +16,8 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onRequestClose }: ModalProps){
+  const { createTransaction } = useContext(TransactionsContext)
+
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState(0)
   const [type, setType] = useState('deposit')
@@ -25,9 +26,9 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault()
 
-    const data = { title, amount, type, category, createdAt: new Date() }
+    const transaction = { title, amount, type, category }
 
-    api.post('/transactions', data)
+    createTransaction(transaction)
 
     onRequestClose()
   }
