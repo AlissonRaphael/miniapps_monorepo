@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { api } from "../../services/api"
 
 import { MainStyle } from "./styles"
+import { TransactionsContext } from '../../Context'
 
 interface TransactionInterface {
   id: number,
@@ -13,6 +14,8 @@ interface TransactionInterface {
 }
 
 export function Main() {
+  const data = useContext(TransactionsContext)
+
   const [transactions, setTransactions] = useState<TransactionInterface[]>([])
 
   useEffect(() => {
