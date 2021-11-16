@@ -1,9 +1,12 @@
 import { useContext } from "react"
-import { SummaryStyle } from "./styles"
-import { TransactionsContext } from "../../Context"
+
 import Money from '../../assets/monetization_on_black_24dp.svg'
 import ArrowCircle from '../../assets/arrow_circle_black_24dp.svg'
 import { svgFilter } from "../../styles/svg-filters"
+
+import { SummaryStyle } from "./styles"
+import { TransactionsContext } from "../../Context"
+
 
 export function Summary(){
   const data = useContext(TransactionsContext)
