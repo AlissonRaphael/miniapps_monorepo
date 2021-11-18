@@ -41,8 +41,9 @@ export function TransactionProvider({ children }: TransactionProviderPropsInterf
   }, [])
 
   const createTransaction = async (transaction: TransactionInputInterface) => {
-    const data = { ...transaction, createdAt: new Date() }
-    await api.post('/transactions', data)
+    const response = await api.post('/transactions', { ...transaction, createdAt: new Date() })
+    const savedTransaction = response.data
+    setTransactions([ ...transactions, savedTransaction ])
   }
 
   return ( 

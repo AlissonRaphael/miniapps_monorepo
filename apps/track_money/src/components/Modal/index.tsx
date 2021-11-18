@@ -31,6 +31,11 @@ export function Modal({ isOpen, onRequestClose }: ModalProps){
     await createTransaction(transaction)
 
     onRequestClose()
+
+    setTitle('')
+    setAmount(0)
+    setType('deposit')
+    setCategory('')
   }
 
   return (
