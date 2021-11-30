@@ -49,9 +49,14 @@
       }
     }
   }
+
+  button {
+    margin-left: auto;
+  }
 }
 
 .logo {
+  user-select: none;
   color: var(--gray-300);
 
   display: flex;
