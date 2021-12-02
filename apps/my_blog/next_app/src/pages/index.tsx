@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import { stripe } from '../services/stripe'
 
 import styles from '../styles/home.module.scss'
@@ -25,10 +26,10 @@ export default function Home({ product }: HomeProps) {
             Get acess to all the publications <br/>
             <span>for $ {product.amount} month</span>
           </p>
-          <SubscribeButton/>
+          <SubscribeButton priceId={product.priceId}/>
         </section>
 
-        <img src="/images/programming.svg" alt="Boy Coding"/>
+        <Image src="/images/programming.svg" alt="Boy Coding"/>
       </main>
     </>
   )
@@ -44,7 +45,7 @@ export const getServerSideProps = async () => {
     amount: new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'
-    }).format(price.unit_amount/100),
+    }).format(price.unit_amount as number/100),
   }
 
   return {
