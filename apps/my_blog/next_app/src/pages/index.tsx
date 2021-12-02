@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { stripe } from '../services/stripe'
 
 import styles from '../styles/home.module.scss'
@@ -29,7 +28,7 @@ export default function Home({ product }: HomeProps) {
           <SubscribeButton priceId={product.priceId}/>
         </section>
 
-        <Image src="/images/programming.svg" alt="Boy Coding"/>
+        <img src="/images/programming.svg" alt="Boy Coding"/>
       </main>
     </>
   )

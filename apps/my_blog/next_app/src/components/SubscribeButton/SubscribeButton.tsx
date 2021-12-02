@@ -9,7 +9,7 @@ export function SubscribeButton ({ priceId }: SubscribeButtonProps) {
 
   return (
     <button
-      _id={priceId}
+      id={priceId}
       type="button"
       className={styles.subscribeButton}
     >
