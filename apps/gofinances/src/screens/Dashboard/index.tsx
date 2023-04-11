@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Container, Header, Wrapper, User, Avatar, Details, Greeting, Name, LogoutIcon, Cards } from './styles';
 
+import Card from '../../components/Card';
+
 export default function Dashboard() {
   return (
     <Container>
@@ -19,6 +21,9 @@ export default function Dashboard() {
       </Header>
 
       <Cards>
+        <Card/>
+        <Card/>
+        <Card/>
       </Cards>
     </Container>
   )
