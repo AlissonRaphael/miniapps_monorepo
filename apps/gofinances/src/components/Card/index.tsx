@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Container, Header, Title, Icon, Footer, Amount, LastTransaction } from './styles';
 
-export default function Card () {
+interface Props {
+  type: 'deposit' | 'withdrawal' | 'total',
+  amount: number,
+  lastTransaction: Date,
+}
+
+const TYPE = {
+  deposit: { title: 'Total', icon: 'dollar' },
+  withdrawal: { title: 'Entrada', icon: 'arrow-circle-up' },
+  total: { title: 'Saída', icon: 'arrow-circle-down' }
+}
+
+export default function Card ({ type, amount, lastTransaction }: Props) {
+  const formmatedLastTransaction = new Intl.DateTimeFormat(
+    'pt-BR',
+    { year: "numeric", month: "long", day: "numeric", }
+  ).format(lastTransaction)
+
+  const formmatedAmount = new Intl.NumberFormat(
+    'pt-BR',
+    { style: 'currency', currency: 'BR' }
+  ).format(amount)
+
   return (
-    <Container>
+    <Container type={type}>
       <Header>
-        <Title>Entrada</Title>
-        <Icon name='arrow-up-circle-outline' />
+        <Title>{TYPE[type].title}</Title>
+        <Icon name={TYPE[type].icon} type={type} />
       </Header>
 
       <Footer>
-        <Amount>R$ 10.300,00</Amount>
-        <LastTransaction>Última entrada dia 13 de abril</LastTransaction>
+        <Amount>{formmatedAmount}</Amount>
+        <LastTransaction>Última entrada {formmatedLastTransaction}</LastTransaction>
       </Footer>
     </Container>
   )

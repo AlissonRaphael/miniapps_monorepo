@@ -1,8 +1,8 @@
-import styled from 'styled-components/native';
-import { Ionicons } from '@expo/vector-icons';
+import styled, { css } from 'styled-components/native';
+import { FontAwesome } from '@expo/vector-icons';
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors.shape};
+  background-color: ${({ type, theme: { colors: { shape, success_light } } }) => type === 'total' ? success_light : shape};
   width: 300px;
   border-radius: 5px;
   padding: 19px 23px 42px 19px;
@@ -20,10 +20,14 @@ export const Title = styled.Text`
   font-size: 16px;
 `
 
-export const Icon = styled(Ionicons).attrs((props) => ({
+export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
   size: props.size || 40,
-}))``
+}))`
+  ${({ type }) => type === 'deposit' && css`color: ${({ theme }) => theme.colors.success};`}
+  ${({ type }) => type === 'withdrawal' && css`color: ${({ theme }) => theme.colors.attention};`}
+  ${({ type }) => type === 'total' && css`color: ${({ theme }) => theme.colors.shape};`}
+`
 
 export const Footer = styled.View``
 
