@@ -21,9 +21,9 @@ export default function Dashboard() {
       </Header>
 
       <Cards>
-        <Card/>
-        <Card/>
-        <Card/>
+        <Card type="deposit" amount={15389} lastTransaction={new Date(Date.now())}/>
+        <Card type="withdrawal" amount={9389} lastTransaction={new Date(Date.now())}/>
+        <Card type="total" amount={2389} lastTransaction={new Date(Date.now())}/>
       </Cards>
     </Container>
   )
