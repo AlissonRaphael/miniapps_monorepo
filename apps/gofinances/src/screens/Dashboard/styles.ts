@@ -71,6 +71,5 @@ export const Cards = styled.ScrollView.attrs((props) => ({
   contentContainerStyle: { paddingHorizontal: 24 },
 }))`
   position: absolute;
-  padding-top: 40%;
-
+  padding-top: ${StatusBarHeightHelper() + 28 + 75 + 28}px;
 `
