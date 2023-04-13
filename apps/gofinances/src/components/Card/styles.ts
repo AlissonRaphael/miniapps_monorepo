@@ -21,10 +21,13 @@ export const Header = styled.View`
   justify-content: space-between;
 `
 
-export const Title = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
+export const Title = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 16px;
+
+  color: ${({ type, theme }) =>
+    type === 'total' ? theme.colors.text_invert : theme.colors.text
+  };
 `
 
 export const Icon = styled(FontAwesome).attrs((props) => ({
@@ -47,15 +50,21 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
 
 export const Footer = styled.View``
 
-export const Amount = styled.Text`
-  color: ${({ theme }) => theme.colors.text_dark};
+export const Amount = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 38px;
   margin-top: 38px;
+
+  color: ${({ type, theme }) =>
+    type === 'total' ? theme.colors.text_light : theme.colors.text_dark
+  };
 `
 
-export const LastTransaction = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
+export const LastTransaction = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: 14px;
+
+  color: ${({ type, theme }) =>
+    type === 'total' ? theme.colors.text_invert : theme.colors.text
+  };
 `
