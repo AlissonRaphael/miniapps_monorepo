@@ -1,12 +1,19 @@
 import styled, { css } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
-export const Container = styled.View`
-  background-color: ${({ type, theme: { colors: { shape, success_light } } }) => type === 'total' ? success_light : shape};
+interface TypeProps {
+  type: 'deposit' | 'withdrawal' | 'total',
+}
+
+export const Container = styled.View<TypeProps>`
   width: 300px;
   border-radius: 5px;
   padding: 19px 23px 42px 19px;
   margin-right: 16px;
+
+  background-color: ${({ type, theme }) =>
+    type === 'total' ? theme.colors.secondary : theme.colors.shape
+  };
 `
 
 export const Header = styled.View`
@@ -23,10 +30,19 @@ export const Title = styled.Text`
 export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
   size: props.size || 40,
-}))`
-  ${({ type }) => type === 'deposit' && css`color: ${({ theme }) => theme.colors.success};`}
-  ${({ type }) => type === 'withdrawal' && css`color: ${({ theme }) => theme.colors.attention};`}
-  ${({ type }) => type === 'total' && css`color: ${({ theme }) => theme.colors.shape};`}
+}))<TypeProps>`
+
+  ${({ type }) => type === 'deposit' && css`
+    color: ${({ theme }) => theme.colors.success};
+  `}
+
+  ${({ type }) => type === 'withdrawal' && css`
+    color: ${({ theme }) => theme.colors.attention};
+  `}
+
+  ${({ type }) => type === 'total' && css`
+    color: ${({ theme }) => theme.colors.shape};
+  `}
 `
 
 export const Footer = styled.View``
