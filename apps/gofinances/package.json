@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.3",
+    "@react-navigation/native": "react-navigation/native",
     "expo": "~48.0.10",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.1.1",
