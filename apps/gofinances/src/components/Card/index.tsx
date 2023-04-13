@@ -9,19 +9,19 @@ interface Props {
 }
 
 const TYPE = {
-  deposit: { title: 'Total', icon: 'dollar' },
-  withdrawal: { title: 'Entrada', icon: 'arrow-circle-up' },
-  total: { title: 'Saída', icon: 'arrow-circle-down' }
+  deposit: { title: 'Entrada', icon: 'arrow-circle-up' },
+  withdrawal: { title: 'Saída', icon: 'arrow-circle-down' },
+  total: { title: 'Total', icon: 'dollar' },
 }
 
 export default function Card ({ type, amount, lastTransaction }: Props) {
-  const formmatedLastTransaction = new Intl.DateTimeFormat(
+  const formmatedLastTransaction = new Intl.DateTimeFormat('pt-BR',
     'pt-BR',
     { year: "numeric", month: "long", day: "numeric", }
   ).format(lastTransaction)
 
-  const formmatedAmount = new Intl.NumberFormat(
-    'pt-BR',
+  const formmatedAmount = new Intl.NumberFormat('pt-BR',
+    { style: 'currency', currency: 'BRL' }
     { style: 'currency', currency: 'BR' }
   ).format(amount)
 
