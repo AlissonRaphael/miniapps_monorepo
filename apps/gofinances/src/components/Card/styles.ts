@@ -52,8 +52,8 @@ export const Footer = styled.View``
 
 export const Amount = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.medium};
-  font-size: 38px;
-  margin-top: 38px;
+  font-size: 40px;
+  margin-top: 42px;
 
   color: ${({ type, theme }) =>
     type === 'total' ? theme.colors.text_light : theme.colors.text_dark

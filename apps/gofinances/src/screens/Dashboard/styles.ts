@@ -9,7 +9,7 @@ export const Container = styled.View`
 `
 
 export const Header = styled.View`
-  padding-top: ${StatusBarHeightHelper() + 28}px;
+  padding-top: ${StatusBarHeightHelper() + 36}px;
 
   width: 100%;
   height: 40%;
@@ -25,13 +25,11 @@ export const Wrapper = styled.View`
 
   align-items: center;
   justify-content: space-between;
-
 `
 
 export const User = styled.View`
   flex-direction: row;
   align-items: center;
-
 `
 
 export const Avatar = styled.Image`
@@ -71,5 +69,5 @@ export const Cards = styled.ScrollView.attrs((props) => ({
   contentContainerStyle: { paddingHorizontal: 24 },
 }))`
   position: absolute;
-  padding-top: ${StatusBarHeightHelper() + 28 + 75 + 28}px;
+  padding-top: ${StatusBarHeightHelper() + 36 + 75 + 26}px;
 `
