@@ -1,8 +1,22 @@
 import React from 'react';
 
-import { Container, Header, Wrapper, User, Avatar, Details, Greeting, Name, LogoutIcon, Cards } from './styles';
+import { 
+  Container, 
+  Header, 
+  Wrapper, 
+  User, 
+  Avatar, 
+  Details, 
+  Greeting, 
+  Name, 
+  LogoutIcon, 
+  Cards,
+  Transactions,
+  Title
+} from './styles';
 
 import Card from '../../components/Card';
+import Transaction from '../../components/Transaction';
 
 export default function Dashboard() {
   return (
@@ -25,6 +39,11 @@ export default function Dashboard() {
         <Card type="withdrawal" amount={9389} lastTransaction={new Date(Date.now())}/>
         <Card type="total" amount={2389} lastTransaction={new Date(Date.now())}/>
       </Cards>
+
+      <Transactions>
+        <Title>Listagem</Title>
+        <Transaction />
+      </Transactions>
     </Container>
   )
 }

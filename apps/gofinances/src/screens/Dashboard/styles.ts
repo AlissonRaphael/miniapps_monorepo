@@ -71,3 +71,15 @@ export const Cards = styled.ScrollView.attrs((props) => ({
   position: absolute;
   padding-top: ${StatusBarHeightHelper() + 36 + 75 + 26}px;
 `
+
+export const Transactions = styled.View`
+  flex: 1;
+  padding: 0 24px;
+
+  margin-top: 18%;
+`
+
+export const Title = styled.Text`
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.regular };
+`
