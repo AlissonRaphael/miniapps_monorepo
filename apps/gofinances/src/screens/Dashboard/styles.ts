@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { Ionicons } from '@expo/vector-icons';
 
-import StatusBarHeightHelper from '../../global/statusbar';
+import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
 
 export const Container = styled.View`
   flex: 1;
