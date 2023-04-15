@@ -5,17 +5,20 @@ interface Category {
   icon: string,
 }
 
-interface TransactionProps {
-  data: {
-    title: string,
-    amount: number,
-    category: Category,
-    date: Date,
-  }
+interface Transaction {
+  title: string,
+  type: 'deposit' | 'withdrawal',
+  category: Category,
+  amount: number,
+  date: Date,
 }
 
-export default function Transaction ({ data }: TransactionProps) {
-  const { title, amount, category, date } = data
+interface Props {
+  data: Transaction
+}
+
+export default function Transaction ({ data }: Props) {
+  const { title, type, category, amount, date } = data
 
   const formmatedDate = new Intl.DateTimeFormat('pt-BR',
     { year: "numeric", month: "long", day: "numeric", }
@@ -28,10 +31,12 @@ export default function Transaction ({ data }: TransactionProps) {
   return (
     <Container>
       <Title>{title}</Title>
-      <Amount type="deposit">{formmatedAmount}</Amount>
+      <Amount type={type}>
+        {type === 'deposit' ? '+' : '-' }{formmatedAmount}
+      </Amount>
       <Footer>
         <Description>
-          <Icon name={category.icon}/>
+          <Icon name={category.icon} type={type}/>
           <Category>{category.name}</Category>
         </Description>
         <TransactionDate>{formmatedDate}</TransactionDate>

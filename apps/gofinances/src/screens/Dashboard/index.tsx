@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { 
-  Container, 
-  Header, 
-  Wrapper, 
-  User, 
-  Avatar, 
-  Details, 
-  Greeting, 
-  Name, 
-  LogoutIcon, 
+import {
+  Container,
+  Header,
+  Wrapper,
+  User,
+  Avatar,
+  Details,
+  Greeting,
+  Name,
+  LogoutIcon,
   Cards,
   History,
   Transactions,
@@ -20,31 +20,40 @@ import Card from '../../components/Card';
 import Transaction from '../../components/Transaction';
 
 export default function Dashboard() {
-  const list = [{
-    id: 1,
-    title: 'Desenvolvimento de site',
-    category: { name: "Trabalho", icon: "dollar" },
-    amount: 11029,
-    date: new Date(Date.now())
-  },{
-    id: 2,
-    title: 'Desenvolvimento de site',
-    category: { name: "Trabalho", icon: "dollar" },
-    amount: 11029,
-    date: new Date(Date.now())
-  },{
-    id: 3,
-    title: 'Desenvolvimento de site',
-    category: { name: "Trabalho", icon: "dollar" },
-    amount: 11029,
-    date: new Date(Date.now())
-  },{
-    id: 4,
-    title: 'Desenvolvimento de site',
-    category: { name: "Trabalho", icon: "dollar" },
-    amount: 11029,
-    date: new Date(Date.now())
-  }]
+  const list = [
+    {
+      id: 1,
+      title: 'Desenvolvimento de site',
+      type: 'deposit',
+      category: { name: "Trabalho", icon: "work" },
+      amount: 11029,
+      date: new Date(Date.now())
+    },
+    {
+      id: 2,
+      title: 'Aluguel',
+      type: 'withdrawal',
+      category: { name: "Despesas", icon: "home-filled" },
+      amount: 921,
+      date: new Date(Date.now())
+    },
+    {
+      id: 3,
+      title: 'Supermercado',
+      type: 'withdrawal',
+      category: { name: "Alimentação", icon: "fastfood" },
+      amount: 413,
+      date: new Date(Date.now())
+    },
+    {
+      id: 4,
+      title: 'Trabalho',
+      type: 'deposit',
+      category: { name: "Trabalho", icon: "work" },
+      amount: 5000,
+      date: new Date(Date.now())
+    },
+  ]
 
   return (
     <Container>
