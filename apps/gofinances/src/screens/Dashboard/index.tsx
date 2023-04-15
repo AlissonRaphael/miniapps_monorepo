@@ -11,6 +11,7 @@ import {
   Name, 
   LogoutIcon, 
   Cards,
+  History,
   Transactions,
   Title
 } from './styles';
@@ -19,6 +20,32 @@ import Card from '../../components/Card';
 import Transaction from '../../components/Transaction';
 
 export default function Dashboard() {
+  const list = [{
+    id: 1,
+    title: 'Desenvolvimento de site',
+    category: { name: "Trabalho", icon: "dollar" },
+    amount: 11029,
+    date: new Date(Date.now())
+  },{
+    id: 2,
+    title: 'Desenvolvimento de site',
+    category: { name: "Trabalho", icon: "dollar" },
+    amount: 11029,
+    date: new Date(Date.now())
+  },{
+    id: 3,
+    title: 'Desenvolvimento de site',
+    category: { name: "Trabalho", icon: "dollar" },
+    amount: 11029,
+    date: new Date(Date.now())
+  },{
+    id: 4,
+    title: 'Desenvolvimento de site',
+    category: { name: "Trabalho", icon: "dollar" },
+    amount: 11029,
+    date: new Date(Date.now())
+  }]
+
   return (
     <Container>
       <Header>
@@ -40,10 +67,14 @@ export default function Dashboard() {
         <Card type="total" amount={2389} lastTransaction={new Date(Date.now())}/>
       </Cards>
 
-      <Transactions>
+      <History>
         <Title>Listagem</Title>
-        <Transaction />
-      </Transactions>
+        <Transactions 
+          data={list}
+          renderItem={({ item }) => <Transaction key={item.id} data={item} />}
+          showsVerticalScrollIndicator={false}
+        />
+      </History>
     </Container>
   )
 }
