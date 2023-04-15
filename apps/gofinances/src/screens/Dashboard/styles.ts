@@ -72,7 +72,7 @@ export const Cards = styled.ScrollView.attrs((props) => ({
   padding-top: ${StatusBarHeightHelper() + 36 + 75 + 26}px;
 `
 
-export const Transactions = styled.View`
+export const History = styled.View`
   flex: 1;
   padding: 0 24px;
 
@@ -82,4 +82,13 @@ export const Transactions = styled.View`
 export const Title = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.regular };
+`
+
+export const Transactions = styled.FlatList.attrs((props) => ({
+  ...props,
+  showsVerticalScrollIndicator: false
+}))`
+  margin-top: 8px;
+  padding-bottom: ${BottomHeightHelper()}px;
+  flex: 1;
 `
