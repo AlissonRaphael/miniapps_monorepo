@@ -87,12 +87,12 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular };
 `
 
-interface TransactionList extends ListRenderItem<TransactionListProps> {}
-
-export const Transactions = styled(FlatList).attrs((props) => ({
+export const Transactions = styled(
+  FlatList as new () => FlatList<ListRenderItem<TransactionListProps>>
+).attrs((props) => ({
   ...props,
   showsVerticalScrollIndicator: false
-}))<TransactionList>`
+}))`
   margin-top: 8px;
   padding-bottom: ${BottomHeightHelper()}px;
   flex: 1;

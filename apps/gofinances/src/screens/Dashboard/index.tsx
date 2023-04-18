@@ -25,7 +25,7 @@ export interface TransactionListProps extends TransactionItemProps {
 }
 
 export default function Dashboard() {
-  const data: TransactionListProps[] = [
+  const DATA = [
     {
       id: 1,
       title: 'Desenvolvimento de site',
@@ -84,11 +84,11 @@ export default function Dashboard() {
       <History>
         <Title>Listagem</Title>
         <Transactions 
-          data={data}
+          data={DATA}
           keyExtractor={(item: TransactionListProps) => item.id}
-          renderItem={({ item }: ListRenderItemInfo<TransactionListProps>) => <Transaction data={item} />}
+          renderItem={({ item }: { item: TransactionListProps }) => <Transaction data={item} />}
         />
-      </History>
+      </History> 
     </Container>
   )
 }
