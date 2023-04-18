@@ -1,4 +1,5 @@
 import React from 'react';
+import { ListRenderItemInfo } from 'react-native';
 
 import {
   Container,
@@ -17,10 +18,14 @@ import {
 } from './styles';
 
 import Card from '../../components/Card';
-import Transaction from '../../components/Transaction';
+import Transaction, { TransactionItemProps } from '../../components/Transaction';
+
+export interface TransactionListProps extends TransactionItemProps {
+  id: number,
+}
 
 export default function Dashboard() {
-  const list = [
+  const data: TransactionListProps[] = [
     {
       id: 1,
       title: 'Desenvolvimento de site',
@@ -79,9 +84,9 @@ export default function Dashboard() {
       <History>
         <Title>Listagem</Title>
         <Transactions 
-          data={list}
-          renderItem={({ item }) => <Transaction key={item.id} data={item} />}
-          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={(item: TransactionListProps) => item.id}
+          renderItem={({ item }: ListRenderItemInfo<TransactionListProps>) => <Transaction data={item} />}
         />
       </History>
     </Container>

@@ -1,7 +1,10 @@
 import styled from 'styled-components/native';
+import { FlatList, ListRenderItem } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
+
+import { TransactionListProps } from '.'
 
 export const Container = styled.View`
   flex: 1;
@@ -84,10 +87,12 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular };
 `
 
-export const Transactions = styled.FlatList.attrs((props) => ({
+interface TransactionList extends ListRenderItem<TransactionListProps> {}
+
+export const Transactions = styled(FlatList).attrs((props) => ({
   ...props,
   showsVerticalScrollIndicator: false
-}))`
+}))<TransactionList>`
   margin-top: 8px;
   padding-bottom: ${BottomHeightHelper()}px;
   flex: 1;
