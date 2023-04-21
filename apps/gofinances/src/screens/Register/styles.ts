@@ -36,3 +36,9 @@ export const Form = styled.View`
 export const Fields = styled.View`
 
 `
+
+export const Types = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+`
