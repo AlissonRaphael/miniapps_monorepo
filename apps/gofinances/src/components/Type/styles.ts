@@ -11,6 +11,7 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
   ...props,
   activeOpacity: props.activeOpacity || 0.6,
 }))<TypeFormProps>`
+  margin: 8px 0;
   border-radius: 5px;
   border: 1px solid ${({ theme }) => theme.colors.text};
   width: 49%;
