@@ -1,12 +1,14 @@
+import { TouchableOpacityProps } from 'react-native';
+
 import { Container, Title, Icon } from './styles';
 
-interface SelectFormProps {
+interface SelectFormProps extends TouchableOpacityProps {
   title: string
 }
 
-export default function SelectForm ({ title }: SelectFormProps) {
+export default function SelectForm ({ title, ...props }: SelectFormProps) {
   return (
-    <Container>
+    <Container {...props}>
       <Title>{title}</Title>
       <Icon name="chevron-down" /> 
     </Container>
