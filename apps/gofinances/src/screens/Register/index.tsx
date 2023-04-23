@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { Modal } from "react-native";
 
 import { Container, Header, Title, Form, Fields, Types } from "./styles";
 
@@ -7,8 +8,22 @@ import Button from '../../components/Button';
 import Type from "../../components/Type";
 import Select from "../../components/Select";
 
+import Category, { CategoryType } from "../Category";
+
 export default function Register () {
   const [transactionType, setTransactionType] = useState<string>("")
+  const [category, setCategory] = useState<CategoryType>()
+
+  const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
+
+  const handleCategoryModalClose = useCallback(category => {
+    setCategory(category)
+    setCategoryModalIsOpen(false)
+  }, [])
+
+  const handleCategoryModalOpen = useCallback(() => {
+    setCategoryModalIsOpen(true)
+  }, [])
 
   return (
     <Container>
@@ -39,12 +54,16 @@ export default function Register () {
             />
           </Types>
 
-          <Select title="Category" />
+          <Select title="Category" onPress={handleCategoryModalOpen} />
         </Fields>
 
         <Button label="Cadastrar" />
       </Form>
-
+      <Category
+        visible={categoryModalIsOpen}
+        onSelect={handleCategoryModalClose}
+        value={category}
+      />
     </Container>
   )
 }
