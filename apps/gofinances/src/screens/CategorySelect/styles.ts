@@ -1,0 +1,74 @@
+import { TouchableOpacity, FlatList, ListRenderItem } from 'react-native';
+import styled from 'styled-components/native';
+import { FontAwesome } from '@expo/vector-icons';
+
+import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
+import { CategoryType } from '.';
+
+
+export const Container = styled.View`
+  padding-bottom: ${BottomHeightHelper()}px;
+  flex: 1;
+`
+
+export const Header = styled.View`
+  padding-top: ${StatusBarHeightHelper()}px;
+
+  width: 100%;
+  height: 114px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ theme }) => theme.colors.primary};
+`
+
+export const Title = styled.Text`
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.shape};
+`
+
+export const CategoriesList = styled(
+  FlatList as new () => FlatList<ListRenderItem<CategoryType>>
+).attrs((props) => ({
+  ...props,
+  showsVerticalScrollIndicator: false
+}))`
+  flex: 1;
+`
+
+export const CategoryItem = styled(TouchableOpacity).attrs((props) => ({
+  ...props,
+  activeOpacity: props.activeOpacity || 0.7,
+}))`
+  padding: 18px;
+  width: 100%;
+
+  flex-direction: row;
+  align-items: center;
+
+  background-color: ${({ theme }) => theme.colors.shape};
+`
+
+export const Separator = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.text}
+`
+
+export const Icon = styled(FontAwesome).attrs(props => ({
+  ...props,
+  size: props.size || 26,
+}))`
+  margin-right: 14px;
+`
+
+export const Label = styled.Text`
+  font-size: 16px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.text};
+`
+
+export const Footer = styled.View`
+  padding: 24px;
+`
