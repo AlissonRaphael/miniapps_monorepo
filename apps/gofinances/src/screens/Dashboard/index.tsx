@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListRenderItemInfo } from 'react-native';
 
 import {
   Container,
