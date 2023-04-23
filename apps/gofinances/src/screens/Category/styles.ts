@@ -1,4 +1,4 @@
-import { TouchableOpacity, FlatList, ListRenderItem } from 'react-native';
+import { TouchableOpacity, FlatList, ListRenderItem, Modal, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -6,8 +6,9 @@ import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusba
 import { CategoryType } from '.';
 
 
-export const Container = styled.View`
-  padding-bottom: ${BottomHeightHelper()}px;
+export const Container = styled(Modal)`
+  margin: 0;
+  padding: 0 0 ${BottomHeightHelper()}px 0;
   flex: 1;
 `
 
@@ -37,17 +38,21 @@ export const CategoriesList = styled(
   flex: 1;
 `
 
+interface CategoryItemProps extends TouchableOpacityProps {
+  active: boolean,
+}
+
 export const CategoryItem = styled(TouchableOpacity).attrs((props) => ({
   ...props,
   activeOpacity: props.activeOpacity || 0.7,
-}))`
+}))<CategoryItemProps>`
   padding: 18px;
   width: 100%;
 
   flex-direction: row;
   align-items: center;
 
-  background-color: ${({ theme }) => theme.colors.shape};
+  background-color: ${({ theme, active }) => active ? theme.colors.success_light : theme.colors.shape};
 `
 
 export const Separator = styled.View`

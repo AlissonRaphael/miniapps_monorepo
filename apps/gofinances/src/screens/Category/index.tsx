@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { ModalProps } from 'react-native';
+
 import {
   Container,
   Header,
@@ -19,7 +22,12 @@ export interface CategoryType {
   color: string,
 }
 
-export default function Categories () {
+interface CategoriesProps extends ModalProps {
+  value?: CategoryType
+  onSelect: (category: CategoryType | undefined) => void,
+}
+
+export default function Categories ({ value, onSelect, ...props }: CategoriesProps) {
   const DATA: CategoryType[] = [
     { id: 1, label: 'Trabalho', icon: 'suitcase', color: 'aquamarine' },
     { id: 2, label: 'Lazer', icon: 'glass', color: 'lightskyblue' },
@@ -28,8 +36,16 @@ export default function Categories () {
     { id: 5, label: 'Outros', icon: 'archive', color: 'pink' }
   ]
 
+  const [selectedCatedory, setSelectedCategory] = useState<CategoryType>()
+
+  useEffect(() => {
+    if (value) {
+      setSelectedCategory(value)
+    }
+  }, [])
+
   return (
-    <Container>
+    <Container {...props} statusBarTranslucent={true} presentationStyle="fullScreen">
       <Header>
         <Title>Categoria</Title>
       </Header>
@@ -38,11 +54,15 @@ export default function Categories () {
         keyExtractor={(item: CategoryType) => item.id}
         renderItem={({ item }: { item: CategoryType }, index: number) => <>
           { index === 0 ? null : <Separator  /> }
-          <Category category={item} onPress={() => console.log(item)}/>
+          <Category
+            category={item}
+            onPress={() => setSelectedCategory(item)}
+            active={item.id === selectedCatedory?.id}
+          />
         </>}
       />
       <Footer>
-        <Button label="Selecionar" onPress={() => {}} />
+        <Button label="Selecionar" onPress={() => onSelect(selectedCatedory)} />
       </Footer>
     </Container>
   )
@@ -50,14 +70,15 @@ export default function Categories () {
 
 interface CategoryProps {
   category: CategoryType,
+  active: boolean,
   onPress: () => void,
 }
 
-function Category ({ category, onPress }: CategoryProps) {
+function Category ({ category, active, onPress }: CategoryProps) {
   const { label, icon, color } = category
 
   return (
-    <CategoryItem onPress={onPress}>
+    <CategoryItem onPress={onPress} active={active}>
       <Icon name={icon} color={color} />
       <Label>{label}</Label>
     </CategoryItem>
