@@ -52,7 +52,7 @@ export const CategoryItem = styled(TouchableOpacity).attrs((props) => ({
   flex-direction: row;
   align-items: center;
 
-  background-color: ${({ theme, active }) => active ? theme.colors.success_light : theme.colors.shape};
+  background-color: ${({ theme, active }) => active ? theme.colors.secondary_light : theme.colors.shape};
 `
 
 export const Separator = styled.View`
@@ -71,7 +71,7 @@ export const Icon = styled(FontAwesome).attrs(props => ({
 export const Label = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text_dark};
 `
 
 export const Footer = styled.View`

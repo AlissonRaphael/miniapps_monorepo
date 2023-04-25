@@ -53,7 +53,11 @@ export default function Register () {
             />
           </Types>
 
-          <Select title="Category" onPress={handleCategoryModalOpen} />
+          <Select
+            placeholder="Category"
+            onPress={handleCategoryModalOpen}
+            category={category}
+          />
         </Fields>
 
         <Button label="Cadastrar" />
