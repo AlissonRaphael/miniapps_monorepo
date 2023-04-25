@@ -24,7 +24,7 @@ export interface CategoryType {
 
 interface CategoriesProps extends ModalProps {
   value?: CategoryType
-  onSelect: (category: CategoryType | undefined) => void,
+  onSelect: (category: CategoryType) => void,
 }
 
 export default function Categories ({ value, onSelect, ...props }: CategoriesProps) {
@@ -62,7 +62,7 @@ export default function Categories ({ value, onSelect, ...props }: CategoriesPro
         </>}
       />
       <Footer>
-        <Button label="Selecionar" onPress={() => onSelect(selectedCatedory)} />
+        <Button label="Selecionar" onPress={() => selectedCatedory && onSelect(selectedCatedory)} />
       </Footer>
     </Container>
   )

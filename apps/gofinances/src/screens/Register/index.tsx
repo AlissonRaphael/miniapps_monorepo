@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { Modal } from "react-native";
 
 import { Container, Header, Title, Form, Fields, Types } from "./styles";
 
@@ -16,7 +15,7 @@ export default function Register () {
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
 
-  const handleCategoryModalClose = useCallback(category => {
+  const handleCategoryModalClose = useCallback((category: CategoryType) => {
     setCategory(category)
     setCategoryModalIsOpen(false)
   }, [])
