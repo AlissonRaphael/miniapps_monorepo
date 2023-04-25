@@ -1,16 +1,22 @@
 import { TouchableOpacityProps } from 'react-native';
 
-import { Container, Title, Icon } from './styles';
+import { Container, Category, Icon, Title, Chevron } from './styles';
+
+import { CategoryType } from '../../screens/Category';
 
 interface SelectFormProps extends TouchableOpacityProps {
-  title: string
+  placeholder: string,
+  category: CategoryType | undefined,
 }
 
-export default function SelectForm ({ title, ...props }: SelectFormProps) {
+export default function SelectForm ({ placeholder, category, ...props }: SelectFormProps) {
   return (
     <Container {...props}>
-      <Title>{title}</Title>
-      <Icon name="chevron-down" /> 
+      <Category>
+        { category ? <Icon name={category?.icon} /> : null}
+        <Title selected={Boolean(category?.label)}>{category?.label || placeholder}</Title>
+      </Category>
+      <Chevron />
     </Container>
   )
 }
