@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useForm, FieldValues } from "react-hook-form";
 
 import { Container, Header, Title, Form, Fields, Types } from "./styles";
 
@@ -9,9 +10,12 @@ import Select from "../../components/Select";
 
 import Category, { CategoryType } from "../Category";
 
+
 export default function Register () {
   const [transactionType, setTransactionType] = useState<string>("")
   const [category, setCategory] = useState<CategoryType>()
+
+  const { control, handleSubmit } = useForm()
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
 
@@ -24,6 +28,10 @@ export default function Register () {
     setCategoryModalIsOpen(true)
   }, [])
 
+  const handleOnSubmit = useCallback((model: FieldValues) => {
+    console.log({...model, category, transactionType})
+  }, [category, transactionType, handleSubmit])
+
   return (
     <Container>
       <Header>
@@ -33,11 +41,15 @@ export default function Register () {
       <Form>
         <Fields>
           <Input
+            name="name"
             placeholder="Nome"
+            control={control}
           />
 
           <Input
+            name="price"
             placeholder="Preço"
+            control={control}
           />
 
           <Types>
@@ -60,7 +72,7 @@ export default function Register () {
           />
         </Fields>
 
-        <Button label="Cadastrar" />
+        <Button label="Cadastrar" onPress={handleSubmit(handleOnSubmit)}/>
       </Form>
       <Category
         visible={categoryModalIsOpen}
