@@ -1,7 +1,9 @@
 import { TextInput } from 'react-native';
 import styled from "styled-components/native";
 
-export const Input = styled(TextInput)`
+import { InputProps } from '.'
+
+export const Input = styled(TextInput)<InputProps>`
   margin-bottom: 8px;
   border-radius: 5px;
   width: 100%;
