@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useForm, FieldValues } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -8,7 +9,6 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Type from "../../components/Type";
 import Select from "../../components/Select";
-
 import Category, { CategoryType } from "../Category";
 
 import schema from "./schema";
@@ -45,52 +45,59 @@ export default function Register () {
   }, [category, transactionType, handleSubmit])
 
   return (
-    <Container>
-      <Header>
-        <Title>Cadastro</Title>
-      </Header>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Container>
+        <Header>
+          <Title>Cadastro</Title>
+        </Header>
 
-      <Form>
-        <Fields>
-          <Input
-            name="name"
-            placeholder="Nome"
-            control={control}
-          />
-
-          <Input
-            name="price"
-            placeholder="Preço"
-            control={control}
-          />
-
-          <Types>
-            <Type
-              type="deposit"
-              onPress={() => setTransactionType("deposit")}
-              checked={transactionType === "deposit"}
+        <Form>
+          <Fields>
+            <Input
+              name="name"
+              placeholder="Nome"
+              autoCapitalize="sentences"
+              control={control}
+              error={errors.name?.message}
             />
-            <Type
-              type="withdrawal"
-              onPress={() => setTransactionType("withdrawal")}
-              checked={transactionType === "withdrawal"}
+
+            <Input
+              name="amount"
+              placeholder="Preço"
+              keyboardType="numeric"
+              control={control}
+              error={errors.amount?.message}
             />
-          </Types>
 
-          <Select
-            placeholder="Category"
-            onPress={handleCategoryModalOpen}
-            category={category}
-          />
-        </Fields>
+            <Types>
+              <Type
+                type="deposit"
+                onPress={() => setTransactionType("deposit")}
+                checked={transactionType === "deposit"}
+              />
+              <Type
+                type="withdrawal"
+                onPress={() => setTransactionType("withdrawal")}
+                checked={transactionType === "withdrawal"}
+              />
+            </Types>
 
-        <Button label="Cadastrar" onPress={handleSubmit(handleOnSubmit)}/>
-      </Form>
-      <Category
-        visible={categoryModalIsOpen}
-        onSelect={handleCategoryModalClose}
-        value={category}
-      />
-    </Container>
+            <Select
+              placeholder="Category"
+              onPress={handleCategoryModalOpen}
+              category={category}
+            />
+          </Fields>
+
+          <Button label="Cadastrar" onPress={handleSubmit(handleOnSubmit)}/>
+        </Form>
+        <Category
+          visible={categoryModalIsOpen}
+          onSelect={handleCategoryModalClose}
+          value={category}
+        />
+      </Container>
+    </TouchableWithoutFeedback>
+
   )
 }
