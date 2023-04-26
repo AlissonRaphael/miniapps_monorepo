@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useForm, FieldValues } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Container, Header, Title, Form, Fields, Types } from "./styles";
 
@@ -10,12 +11,13 @@ import Select from "../../components/Select";
 
 import Category, { CategoryType } from "../Category";
 
+import schema from "./schema";
 
 export default function Register () {
   const [transactionType, setTransactionType] = useState<string>("")
   const [category, setCategory] = useState<CategoryType>()
 
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) })
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
 
@@ -29,6 +31,16 @@ export default function Register () {
   }, [])
 
   const handleOnSubmit = useCallback((model: FieldValues) => {
+    if (['', undefined, null].includes(transactionType)) {
+      alert('Selectione o tipo da transação')
+      return;
+    }
+
+    if (!category) {
+      alert('Selectione uma categoria para essa transação')
+      return;
+    }
+
     console.log({...model, category, transactionType})
   }, [category, transactionType, handleSubmit])
 
