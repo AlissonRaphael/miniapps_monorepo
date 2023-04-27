@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
-
-import Dashboard from './src/screens/Dashboard';
+import { NavigationContainer } from '@react-navigation/native';
 
 import Theme from './src/global/theme';
+import Routes from './src/routes/app.routes';
 
 SplashScreen.preventAutoHideAsync()
 
@@ -28,8 +28,10 @@ export default function App() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutView}>
       <ThemeProvider theme={Theme}>
-        <Dashboard />
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
       </ThemeProvider>
-    </View>
+    // </View>
   )
 }
