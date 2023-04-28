@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
+import { isIphoneX, getBottomSpace } from 'react-native-iphone-x-helper';
 
 import theme from '../global/theme';
 import Dashboard from '../screens/Dashboard';
@@ -15,6 +16,7 @@ export default function Routes () {
         tabBarActiveTintColor: theme.colors.secondary,
         tabBarInactiveTintColor: theme.colors.text,
         tabBarLabelPosition: 'beside-icon',
+        tabBarStyle: { paddingBottom: isIphoneX() ? getBottomSpace() : 0 },
         headerShown: false,
       }}
     >
