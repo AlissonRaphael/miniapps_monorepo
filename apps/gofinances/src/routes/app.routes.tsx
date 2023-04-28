@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 
 import theme from '../global/theme';
 import Dashboard from '../screens/Dashboard';
@@ -22,22 +22,25 @@ export default function Routes () {
         name="Transações"
         component={Dashboard}
         options={{
-          tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="transfer" color={color} size={size} />
-        }}
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="transfer" color={color} size={size} />
+          )}}
       />
       <Tab.Screen
         name="Cadastrar"
         component={Register}
         options={{
-          tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="text-box-plus" color={color} size={size} />
-        }}
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="text-box-plus" color={color} size={size} />
+          )}}
       />
       <Tab.Screen
         name="Resumo"
         component={Summary}
         options={{
-          tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="chart-donut-variant" color={color} size={size} />
-        }}
+          tabBarIcon: ({ size, color }) => (
+            <Icon name="chart-donut-variant" color={color} size={size} />
+          )}}
       />
     </Tab.Navigator>
   )
