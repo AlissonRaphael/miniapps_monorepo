@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   Container,
@@ -18,46 +19,31 @@ import {
 
 import Card from '../../components/Card';
 import Transaction, { TransactionItemProps } from '../../components/Transaction';
+import { $transactions } from '../../global/storage';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: number,
 }
 
 export default function Dashboard() {
-  const DATA = [
-    {
-      id: 1,
-      title: 'Desenvolvimento de site',
-      type: 'deposit',
-      category: { name: "Trabalho", icon: "work" },
-      amount: 11029,
-      date: new Date(Date.now())
-    },
-    {
-      id: 2,
-      title: 'Aluguel',
-      type: 'withdrawal',
-      category: { name: "Despesas", icon: "home-filled" },
-      amount: 921,
-      date: new Date(Date.now())
-    },
-    {
-      id: 3,
-      title: 'Supermercado',
-      type: 'withdrawal',
-      category: { name: "Alimentação", icon: "fastfood" },
-      amount: 413,
-      date: new Date(Date.now())
-    },
-    {
-      id: 4,
-      title: 'Trabalho',
-      type: 'deposit',
-      category: { name: "Trabalho", icon: "work" },
-      amount: 5000,
-      date: new Date(Date.now())
-    },
-  ]
+  const [data, setData] = useState<TransactionListProps[]>([])
+
+  useEffect(() => {
+    (async () => {
+      const data = await AsyncStorage.getItem($transactions)
+      if (data) {
+        console.log(data)
+        setData(JSON.parse(data || "[]"))
+      }
+    })()
+  }, [])
+
+  const [deposit, withdrawal, total] = useMemo(() => {
+    let deposit: number = 0
+    let withdrawal: number = 0
+    data.forEach(({ amount, type }) => type === 'deposit' ? deposit += amount : withdrawal += amount)
+    return [deposit, withdrawal, deposit-withdrawal]
+  }, [data])
 
   return (
     <Container>
@@ -75,15 +61,15 @@ export default function Dashboard() {
       </Header>
 
       <Cards>
-        <Card type="deposit" amount={15389} lastTransaction={new Date(Date.now())}/>
-        <Card type="withdrawal" amount={9389} lastTransaction={new Date(Date.now())}/>
-        <Card type="total" amount={2389} lastTransaction={new Date(Date.now())}/>
+        <Card type="deposit" amount={deposit} lastTransaction={new Date(Date.now())}/>
+        <Card type="withdrawal" amount={withdrawal} lastTransaction={new Date(Date.now())}/>
+        <Card type="total" amount={total} lastTransaction={new Date(Date.now())}/>
       </Cards>
 
       <History>
         <Title>Listagem</Title>
-        <Transactions 
-          data={DATA}
+        <Transactions
+          data={data}
           keyExtractor={(item: TransactionListProps) => item.id}
           renderItem={({ item }: { item: TransactionListProps }) => <Transaction data={item} />}
         />
