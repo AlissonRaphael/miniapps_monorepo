@@ -6,7 +6,7 @@ interface Category {
 }
 
 export interface TransactionItemProps {
-  title: string,
+  name: string,
   type: 'deposit' | 'withdrawal',
   category: Category,
   amount: number,
@@ -18,11 +18,11 @@ interface TransactionProps {
 }
 
 export default function Transaction ({ data }: TransactionProps) {
-  const { title, type, category, amount, date } = data
+  const { name, type, category, amount, date } = data
 
   const formmatedDate = new Intl.DateTimeFormat('pt-BR',
     { year: "numeric", month: "long", day: "numeric", }
-  ).format(date)
+  ).format(new Date(date))
 
   const formmatedAmount = new Intl.NumberFormat('pt-BR',
     { style: 'currency', currency: 'BRL' }
@@ -30,7 +30,7 @@ export default function Transaction ({ data }: TransactionProps) {
 
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title>{name}</Title>
       <Amount type={type}>
         {type === 'deposit' ? '+' : '-'}{formmatedAmount}
       </Amount>
