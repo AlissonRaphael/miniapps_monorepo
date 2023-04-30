@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components/native";
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 interface TypeProps {
   type: 'deposit' | 'withdrawal',
@@ -44,7 +44,7 @@ export const Description = styled.View`
   align-items: center;
 `
 
-export const Icon = styled(MaterialIcons).attrs((props) => ({
+export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
   size: props.size || 20
 }))<TypeProps>`
