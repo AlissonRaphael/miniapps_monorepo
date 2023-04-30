@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
-import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import { Alert, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useForm, FieldValues } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Container, Header, Title, Form, Fields, Types } from "./styles";
 
@@ -12,6 +13,7 @@ import Select from "../../components/Select";
 import Category, { CategoryType } from "../Category";
 
 import schema from "./schema";
+import { $transactions } from '../../global/storage';
 
 export default function Register () {
   const [type, setType] = useState<string>("")
@@ -30,7 +32,7 @@ export default function Register () {
     setCategoryModalIsOpen(true)
   }, [])
 
-  const handleOnSubmit = useCallback((model: FieldValues) => {
+  const handleOnSubmit = useCallback(async (model: FieldValues) => {
     if (['', undefined, null].includes(type)) {
       alert('Selectione o tipo da transação')
       return;
@@ -41,8 +43,16 @@ export default function Register () {
       return;
     }
 
-    console.log({...model, category, transactionType})
-  }, [category, transactionType, handleSubmit])
+    try {
+      const transactions = JSON.parse(await AsyncStorage.getItem($transactions) || "[]")
+      const transaction = { id: transactions.length + 1, ...model, category, type, date: new Date(Date.now()) }
+      transactions.push(transaction)
+      await AsyncStorage.setItem($transactions, JSON.stringify(transactions))
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Não foi possível cadastrar')
+    }
+  }, [category, type, handleSubmit])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
