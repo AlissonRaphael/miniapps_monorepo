@@ -14,7 +14,7 @@ import Category, { CategoryType } from "../Category";
 import schema from "./schema";
 
 export default function Register () {
-  const [transactionType, setTransactionType] = useState<string>("")
+  const [type, setType] = useState<string>("")
   const [category, setCategory] = useState<CategoryType>()
 
   const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) })
@@ -31,7 +31,7 @@ export default function Register () {
   }, [])
 
   const handleOnSubmit = useCallback((model: FieldValues) => {
-    if (['', undefined, null].includes(transactionType)) {
+    if (['', undefined, null].includes(type)) {
       alert('Selectione o tipo da transação')
       return;
     }
@@ -72,13 +72,13 @@ export default function Register () {
             <Types>
               <Type
                 type="deposit"
-                onPress={() => setTransactionType("deposit")}
-                checked={transactionType === "deposit"}
+                onPress={() => setType("deposit")}
+                checked={type === "deposit"}
               />
               <Type
                 type="withdrawal"
-                onPress={() => setTransactionType("withdrawal")}
-                checked={transactionType === "withdrawal"}
+                onPress={() => setType("withdrawal")}
+                checked={type === "withdrawal"}
               />
             </Types>
 
