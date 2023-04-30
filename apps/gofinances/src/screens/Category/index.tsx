@@ -17,7 +17,7 @@ import Button from '../../components/Button';
 
 export interface CategoryType {
   id: number,
-  label: string,
+  name: string,
   icon: string,
   color: string,
 }
@@ -29,11 +29,11 @@ interface CategoriesProps extends ModalProps {
 
 export default function Categories ({ value, onSelect, ...props }: CategoriesProps) {
   const DATA: CategoryType[] = [
-    { id: 1, label: 'Trabalho', icon: 'suitcase', color: 'aquamarine' },
-    { id: 2, label: 'Lazer', icon: 'glass', color: 'lightskyblue' },
-    { id: 3, label: 'Custos', icon: 'credit-card', color: 'gold' },
-    { id: 4, label: 'Imprevistos', icon: 'thumbs-down', color: 'coral' },
-    { id: 5, label: 'Outros', icon: 'archive', color: 'pink' }
+    { id: 1, name: 'Trabalho', icon: 'suitcase', color: 'aquamarine' },
+    { id: 2, name: 'Lazer', icon: 'glass', color: 'lightskyblue' },
+    { id: 3, name: 'Custos', icon: 'credit-card', color: 'gold' },
+    { id: 4, name: 'Imprevistos', icon: 'thumbs-down', color: 'coral' },
+    { id: 5, name: 'Outros', icon: 'archive', color: 'pink' }
   ]
 
   const [selectedCatedory, setSelectedCategory] = useState<CategoryType>()
@@ -75,12 +75,12 @@ interface CategoryProps {
 }
 
 function Category ({ category, active, onPress }: CategoryProps) {
-  const { label, icon, color } = category
+  const { name, icon, color } = category
 
   return (
     <CategoryItem onPress={onPress} active={active}>
       <Icon name={icon} color={color} />
-      <Label>{label}</Label>
+      <Label>{name}</Label>
     </CategoryItem>
   )
 }

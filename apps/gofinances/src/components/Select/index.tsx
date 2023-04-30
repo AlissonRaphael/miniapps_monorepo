@@ -14,7 +14,7 @@ export default function SelectForm ({ placeholder, category, ...props }: SelectF
     <Container {...props}>
       <Category>
         { category ? <Icon name={category?.icon} /> : null}
-        <Title selected={Boolean(category?.label)}>{category?.label || placeholder}</Title>
+        <Title selected={Boolean(category?.name)}>{category?.name || placeholder}</Title>
       </Category>
       <Chevron />
     </Container>
