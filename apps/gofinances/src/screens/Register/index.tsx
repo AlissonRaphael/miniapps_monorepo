@@ -3,6 +3,7 @@ import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
 
 import { Container, Header, Title, Form, Fields, Types } from './styles';
 
@@ -45,7 +46,7 @@ export default function Register () {
 
     try {
       const transactions = JSON.parse(await AsyncStorage.getItem($transactions) || "[]")
-      const transaction = { id: transactions.length + 1, ...model, category, type, date: new Date(Date.now()) }
+      const transaction = { id: String(uuid.v4()), ...model, category, type, date: new Date() }
       transactions.push(transaction)
       await AsyncStorage.setItem($transactions, JSON.stringify(transactions))
     } catch (error) {
