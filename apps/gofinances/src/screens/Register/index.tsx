@@ -4,6 +4,8 @@ import { useForm, FieldValues } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
+import { useNavigation } from '@react-navigation/native';
+
 
 import { Container, Header, Title, Form, Fields, Types } from './styles';
 
@@ -21,6 +23,7 @@ export default function Register () {
   const [category, setCategory] = useState<CategoryType | null>(null)
 
   const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) })
+  const navigation = useNavigation()
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
 
@@ -56,6 +59,7 @@ export default function Register () {
       transactions.push(transaction)
       await AsyncStorage.setItem($transactions, JSON.stringify(transactions))
       handleReset()
+      navigation.navigate('Transações')
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível cadastrar')

@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 import {
   Container,
@@ -28,15 +29,17 @@ export interface TransactionListProps extends TransactionItemProps {
 export default function Dashboard() {
   const [data, setData] = useState<TransactionListProps[]>([])
 
-  useEffect(() => {
-    (async () => {
-      const data = await AsyncStorage.getItem($transactions)
-      if (data) {
-        console.log(data)
-        setData(JSON.parse(data || "[]"))
-      }
-    })()
-  }, [])
+  const loadTransactions = async () => {
+    const data = await AsyncStorage.getItem($transactions)
+    if (data) {
+      console.log(data)
+      setData(JSON.parse(data || "[]"))
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+    loadTransactions()
+  }, []))
 
   const [deposit, withdrawal, total] = useMemo(() => {
     let deposit: number = 0
