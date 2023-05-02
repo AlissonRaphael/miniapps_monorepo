@@ -1,7 +1,8 @@
-import { TouchableOpacity } from "react-native";
-import styled, { css } from "styled-components/native";
+import { TouchableOpacity } from 'react-native';
+import styled, { css } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
-import { TypeFormProps } from ".";
+
+import { TypeFormProps } from '.';
 
 interface TypeProps {
   type: 'deposit' | 'withdrawal',

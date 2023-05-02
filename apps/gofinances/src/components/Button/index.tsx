@@ -1,6 +1,6 @@
-import { TouchableOpacityProps } from 'react-native/types'
+import { TouchableOpacityProps } from 'react-native/types';
 
-import { Button, Label } from './styles'
+import { Button, Label } from './styles';
 
 interface ButtonFormProps extends TouchableOpacityProps {
   label: string

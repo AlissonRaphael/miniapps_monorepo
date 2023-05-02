@@ -1,4 +1,4 @@
-import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from "./style"
+import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from './style';
 
 interface Category {
   name: string,

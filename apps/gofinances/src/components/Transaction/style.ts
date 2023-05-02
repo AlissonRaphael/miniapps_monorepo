@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/native";
+import styled, { css } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 interface TypeProps {

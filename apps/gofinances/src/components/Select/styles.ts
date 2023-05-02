@@ -1,5 +1,5 @@
-import { TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import { TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export const Container = styled(TouchableOpacity).attrs((props) => ({
