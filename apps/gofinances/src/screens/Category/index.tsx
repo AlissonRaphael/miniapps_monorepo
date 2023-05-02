@@ -23,7 +23,7 @@ export interface CategoryType {
 }
 
 interface CategoriesProps extends ModalProps {
-  value?: CategoryType
+  value?: CategoryType | null,
   onSelect: (category: CategoryType) => void,
 }
 

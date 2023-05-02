@@ -6,7 +6,7 @@ import { CategoryType } from '../../screens/Category';
 
 interface SelectFormProps extends TouchableOpacityProps {
   placeholder: string,
-  category: CategoryType | undefined,
+  category: CategoryType | null,
 }
 
 export default function SelectForm ({ placeholder, category, ...props }: SelectFormProps) {
