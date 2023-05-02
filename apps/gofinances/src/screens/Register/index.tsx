@@ -18,11 +18,17 @@ import { $transactions } from '../../global/storage';
 
 export default function Register () {
   const [type, setType] = useState<string>("")
-  const [category, setCategory] = useState<CategoryType>()
+  const [category, setCategory] = useState<CategoryType | null>(null)
 
-  const { control, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) })
+  const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) })
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
+
+  const handleReset = useCallback(() => {
+    setType('')
+    setCategory(null)
+    reset()
+  }, [])
 
   const handleCategoryModalClose = useCallback((category: CategoryType) => {
     setCategory(category)
@@ -49,6 +55,7 @@ export default function Register () {
       const transaction = { id: String(uuid.v4()), ...model, category, type, date: new Date() }
       transactions.push(transaction)
       await AsyncStorage.setItem($transactions, JSON.stringify(transactions))
+      handleReset()
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível cadastrar')
