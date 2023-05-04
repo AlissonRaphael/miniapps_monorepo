@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -15,26 +16,32 @@ import {
   Cards,
   History,
   Transactions,
-  Title
+  Title,
+  Load
 } from './styles';
 
 import Card from '../../components/Card';
 import Transaction, { TransactionItemProps } from '../../components/Transaction';
 import { $transactions } from '../../global/storage';
+import { useTheme } from 'styled-components';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: number,
 }
 
 export default function Dashboard() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<TransactionListProps[]>([])
 
+  const theme = useTheme()
+
   const loadTransactions = async () => {
+    setIsLoading(true)
     const data = await AsyncStorage.getItem($transactions)
     if (data) {
-      console.log(data)
       setData(JSON.parse(data || "[]"))
     }
+    setIsLoading(false)
   }
 
   useFocusEffect(useCallback(() => {
@@ -47,6 +54,14 @@ export default function Dashboard() {
     data.forEach(({ amount, type }) => type === 'deposit' ? deposit += amount : withdrawal += amount)
     return [deposit, withdrawal, deposit-withdrawal]
   }, [data])
+
+  if (isLoading) {
+    return (
+      <Load>
+        <ActivityIndicator color={theme.colors.secondary} size="large" />
+      </Load>
+    )
+  }
 
   return (
     <Container>
