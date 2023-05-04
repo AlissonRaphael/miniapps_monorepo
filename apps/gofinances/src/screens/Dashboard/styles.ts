@@ -79,7 +79,7 @@ export const History = styled.View`
   flex: 1;
   padding: 0 24px;
 
-  margin-top: 18%;
+  margin-top: 105px;
 `
 
 export const Title = styled.Text`
