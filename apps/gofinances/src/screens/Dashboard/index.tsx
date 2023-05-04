@@ -48,11 +48,32 @@ export default function Dashboard() {
     loadTransactions()
   }, []))
 
-  const [deposit, withdrawal, total] = useMemo(() => {
-    let deposit: number = 0
-    let withdrawal: number = 0
-    data.forEach(({ amount, type }) => type === 'deposit' ? deposit += amount : withdrawal += amount)
-    return [deposit, withdrawal, deposit-withdrawal]
+  const [deposit, withdrawal, total, lastDeposit, lastWithdrawal, lastTransaction] = useMemo(() => {
+    let deposit = 0, withdrawal = 0, lastDeposit = 0, lastWithdrawal = 0, lastTransaction = 0;
+
+    data.forEach(({ amount, type, date }) => {
+      const time = new Date(date).getTime()
+      lastTransaction = lastTransaction > time ? lastTransaction : time
+
+      switch (type) {
+        case 'deposit':
+          deposit += amount
+          lastDeposit = lastDeposit > time ? lastDeposit : time
+          break
+        case 'withdrawal':
+          withdrawal += amount
+          lastWithdrawal = lastWithdrawal > time ? lastWithdrawal : time
+          break
+      }
+    })
+    return [
+      deposit,
+      withdrawal,
+      deposit-withdrawal,
+      new Date(lastDeposit),
+      new Date(lastWithdrawal),
+      new Date(lastTransaction)
+    ]
   }, [data])
 
   if (isLoading) {
@@ -79,9 +100,9 @@ export default function Dashboard() {
       </Header>
 
       <Cards>
-        <Card type="deposit" amount={deposit} lastTransaction={new Date(Date.now())}/>
-        <Card type="withdrawal" amount={withdrawal} lastTransaction={new Date(Date.now())}/>
-        <Card type="total" amount={total} lastTransaction={new Date(Date.now())}/>
+        <Card type="deposit" amount={deposit} lastTransaction={lastDeposit} />
+        <Card type="withdrawal" amount={withdrawal} lastTransaction={lastWithdrawal} />
+        <Card type="total" amount={total} lastTransaction={lastTransaction} />
       </Cards>
 
       <History>
