@@ -1,4 +1,4 @@
-import { StatusBar } from "react-native";
+import { StatusBar } from 'react-native';
 import { getStatusBarHeight, isIphoneX, getBottomSpace } from 'react-native-iphone-x-helper';
 
 export function StatusBarHeightHelper (): number {
