@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -17,13 +16,12 @@ import {
   History,
   Transactions,
   Title,
-  Load
 } from './styles';
 
 import Card from '../../components/Card';
 import Transaction, { TransactionItemProps } from '../../components/Transaction';
 import { $transactions } from '../../global/storage';
-import { useTheme } from 'styled-components';
+import ActivityIndicator from '../../components/ActivityIndicator';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: number,
@@ -32,8 +30,6 @@ export interface TransactionListProps extends TransactionItemProps {
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<TransactionListProps[]>([])
-
-  const theme = useTheme()
 
   const loadTransactions = async () => {
     setIsLoading(true)
@@ -77,11 +73,7 @@ export default function Dashboard() {
   }, [data])
 
   if (isLoading) {
-    return (
-      <Load>
-        <ActivityIndicator color={theme.colors.secondary} size="large" />
-      </Load>
-    )
+    return <ActivityIndicator />
   }
 
   return (

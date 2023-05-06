@@ -97,9 +97,3 @@ export const Transactions = styled(
   padding-bottom: ${BottomHeightHelper()}px;
   flex: 1;
 `
-
-export const Load = styled.View`
-  flex: 1
-  align-items: center;
-  justify-content: center;
-`
