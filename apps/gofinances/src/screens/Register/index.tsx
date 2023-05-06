@@ -6,24 +6,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { useNavigation } from '@react-navigation/native';
 
-
 import { Container, Header, Title, Form, Fields, Types } from './styles';
+import schema from './schema';
 
+import { $transactions } from '../../global/storage';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Type from '../../components/Type';
 import Select from '../../components/Select';
 import Category, { CategoryType } from '../Category';
 
-import schema from './schema';
-import { $transactions } from '../../global/storage';
+interface NavigationProps {
+  navigate: (value: string) => void,
+}
 
 export default function Register () {
   const [type, setType] = useState<string>("")
   const [category, setCategory] = useState<CategoryType | null>(null)
 
   const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) })
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProps>()
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
 
