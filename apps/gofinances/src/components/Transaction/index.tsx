@@ -1,7 +1,9 @@
 import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from './style';
 
 interface Category {
+  id: string;
   name: string,
+  color: string,
   icon: string,
 }
 

@@ -24,7 +24,7 @@ import { $transactions } from '../../global/storage';
 import ActivityIndicator from '../../components/ActivityIndicator';
 
 export interface TransactionListProps extends TransactionItemProps {
-  id: number,
+  id: string,
 }
 
 export default function Dashboard() {
