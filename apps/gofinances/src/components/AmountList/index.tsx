@@ -4,19 +4,18 @@ import { Container, Item, Title, Amounts, Amount, Icon, Text } from './styles';
 
 import { TransactionItemProps } from '../Transaction';
 
-interface TransactionListProps extends TransactionItemProps {
+interface Transaction extends TransactionItemProps {
   id: string,
 }
 
 interface AmountListProps {
-  transactions: TransactionListProps[]
+  transactions: Transaction[]
 }
-interface CategoryDictionary<TValue> {
+interface Dictionary<TValue> {
   [key: string]: TValue
 }
 
-interface CategoryValues {
-  id: string,
+interface Category {
   deposit: number,
   withdrawal: number,
   name: string,
@@ -24,10 +23,10 @@ interface CategoryValues {
 }
 
 export default function AmountList ({ transactions }: AmountListProps) {
-  const categories = useMemo<CategoryValues[]>(() => {
-    const processor = {} as CategoryDictionary<Processor>
+  const categories = useMemo<Category[]>(() => {
+    const processor = {} as Dictionary<Processor>
 
-    transactions.forEach((transaction: TransactionListProps) => {
+    transactions.forEach((transaction: Transaction) => {
       const { amount, type, category: { name } } = transaction
 
       if (processor[name] === undefined) {
@@ -48,10 +47,10 @@ export default function AmountList ({ transactions }: AmountListProps) {
 
   return (
     <Container>
-      {categories.map((category: CategoryValues) => {
-        const { id, deposit, withdrawal, name, color } = category
+      {categories.map((category: Category) => {
+        const { deposit, withdrawal, name, color } = category
         return (
-          <Item key={id} borderColor={color}>
+          <Item key={name} borderColor={color}>
             <Title>{name}</Title>
             <Amounts>
               <Amount>
@@ -74,7 +73,7 @@ class Processor {
   deposit: number;
   withdrawal: number;
 
-  constructor(public transaction: TransactionListProps) {
+  constructor(public transaction: Transaction) {
     this.deposit = 0
     this.withdrawal = 0
   }
@@ -90,8 +89,8 @@ class Processor {
   }
 
   get () {
-    const { deposit, withdrawal, transaction: { id, category: { name, color } } } = this
-    return { id, deposit, withdrawal, name, color }
+    const { deposit, withdrawal, transaction: { category: { name, color } } } = this
+    return { deposit, withdrawal, name, color }
   }
 
 }
