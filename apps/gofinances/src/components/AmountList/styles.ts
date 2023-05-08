@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 interface ItemProps {
@@ -24,6 +24,7 @@ export const Item = styled.View<ItemProps>`
 
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.shape};
 `
 
@@ -32,28 +33,25 @@ export const Title = styled.Text`
   font-size: 16px;
 `
 
-export const Amounts = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: 16px;
+export const Amounts = styled.View`
+  align-items: space-between;
+`
+
+export const Amount = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+`
+
+export const Text = styled.Text`
+  font-size: 14px;
+  margin-right: 8px;
 `
 
 export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
-  size: props.size || 40,
+  size: props.size || 14,
 }))<TypeProps>`
-
-  ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.colors.success};
-  `}
-
-  ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.colors.attention};
-  `}
-`
-
-export const Amount = styled.Text<TypeProps>`
-  font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: 16px;
 
   ${({ type }) => type === 'deposit' && css`
     color: ${({ theme }) => theme.colors.success};
