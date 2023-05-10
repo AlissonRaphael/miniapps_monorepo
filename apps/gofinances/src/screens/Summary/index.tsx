@@ -13,15 +13,49 @@ export interface TransactionListProps extends TransactionItemProps {
   id: string,
 }
 
+interface Dictionary<TValue> {
+  [key: string]: TValue
+}
+
+interface Category {
+  deposit: number,
+  withdrawal: number,
+  name: string,
+  color: string,
+}
+
 export default function Summary () {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [transactions, setTransactions] = useState<TransactionListProps[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+
+  const process = useCallback((transactions: TransactionListProps[]) => {
+    const processor = {} as Dictionary<Category>
+
+    transactions.forEach((transaction: TransactionListProps) => {
+      const { amount, type, category: { name, color } } = transaction
+
+      if (processor[name] === undefined) {
+        processor[name] = { deposit: 0, withdrawal: 0, name, color }
+      }
+
+      if (type === 'deposit') {
+        processor[name].deposit += amount
+      }
+
+      if (type === 'withdrawal') {
+        processor[name].withdrawal += amount
+      }
+    })
+
+    return Object.values(processor)
+  }, [])
 
   const loadTransactions = async () => {
     setIsLoading(true)
     const data = await AsyncStorage.getItem($transactions)
     if (data) {
-      setTransactions(JSON.parse(data || "[]"))
+      const raw = JSON.parse(data || "[]")
+      setCategories(process(raw))
     }
     setIsLoading(false)
   }
@@ -40,7 +74,7 @@ export default function Summary () {
         <Title>Resumo</Title>
       </Header>
 
-      <AmountList transactions={transactions} />
+      <AmountList categories={categories} />
     </Container>
   )
 }
