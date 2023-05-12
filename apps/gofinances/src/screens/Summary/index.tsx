@@ -24,12 +24,20 @@ interface Category {
   color: string,
 }
 
+interface Totals {
+  deposit: number,
+  withdrawal: number,
+}
+
 export default function Summary () {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [categories, setCategories] = useState<Category[]>([])
+  const [totals, setTotals] = useState<Totals>()
 
   const process = useCallback((transactions: TransactionListProps[]) => {
     const processor = {} as Dictionary<Category>
+    let deposit = 0
+    let withdrawal = 0
 
     transactions.forEach((transaction: TransactionListProps) => {
       const { amount, type, category: { name, color } } = transaction
@@ -40,14 +48,16 @@ export default function Summary () {
 
       if (type === 'deposit') {
         processor[name].deposit += amount
+        deposit += amount
       }
 
       if (type === 'withdrawal') {
         processor[name].withdrawal += amount
+        withdrawal += amount
       }
     })
 
-    return Object.values(processor)
+    return [Object.values(processor), { deposit, withdrawal }]
   }, [])
 
   const loadTransactions = async () => {
@@ -55,7 +65,9 @@ export default function Summary () {
     const data = await AsyncStorage.getItem($transactions)
     if (data) {
       const raw = JSON.parse(data || "[]")
-      setCategories(process(raw))
+      const [categories, totals] = process(raw)
+      setCategories(categories)
+      setTotals(totals)
     }
     setIsLoading(false)
   }
