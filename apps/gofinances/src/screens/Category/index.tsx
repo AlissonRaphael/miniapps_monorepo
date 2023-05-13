@@ -23,7 +23,7 @@ interface CategoriesProps extends ModalProps {
 
 export default function Categories ({ value, onSelect, ...props }: CategoriesProps) {
   const categories: CategoryType[] = useMemo(() => Object.values(CATEGORIES), [])
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>()
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null)
 
   useEffect(() => {
     if (value) {

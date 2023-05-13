@@ -1,4 +1,4 @@
-import CATEGORIES, { CategoryType } from './../../global/categories'
+import CATEGORIES from './../../global/categories'
 
 import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from './style';
 

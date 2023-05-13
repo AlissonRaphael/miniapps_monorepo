@@ -2,6 +2,11 @@ import React, { useCallback, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
+import Card from '../../components/Card';
+import Transaction, { TransactionItemProps } from '../../components/Transaction';
+import { $transactions } from '../../global/storage';
+import ActivityIndicator from '../../components/ActivityIndicator';
+
 import {
   Container,
   Header,
@@ -17,11 +22,6 @@ import {
   Transactions,
   Title,
 } from './styles';
-
-import Card from '../../components/Card';
-import Transaction, { TransactionItemProps } from '../../components/Transaction';
-import { $transactions } from '../../global/storage';
-import ActivityIndicator from '../../components/ActivityIndicator';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: string,
