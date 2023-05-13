@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ModalProps } from 'react-native';
+
+import Button from '../../components/Button';
+import CATEGORIES, { CategoryType } from '../../global/categories';
 
 import {
   Container,
@@ -13,56 +16,40 @@ import {
   Footer
 } from './styles';
 
-import Button from '../../components/Button';
-
-export interface CategoryType {
-  id: number,
-  name: string,
-  icon: string,
-  color: string,
-}
-
 interface CategoriesProps extends ModalProps {
-  value?: CategoryType | null,
-  onSelect: (category: CategoryType) => void,
+  value?: number | undefined,
+  onSelect: (categoryId: number) => void,
 }
 
 export default function Categories ({ value, onSelect, ...props }: CategoriesProps) {
-  const DATA: CategoryType[] = [
-    { id: 1, name: 'Trabalho', icon: 'suitcase', color: 'aquamarine' },
-    { id: 2, name: 'Lazer', icon: 'glass', color: 'lightskyblue' },
-    { id: 3, name: 'Custos', icon: 'credit-card', color: 'gold' },
-    { id: 4, name: 'Imprevistos', icon: 'thumbs-down', color: 'coral' },
-    { id: 5, name: 'Outros', icon: 'archive', color: 'pink' }
-  ]
-
-  const [selectedCatedory, setSelectedCategory] = useState<CategoryType>()
+  const categories: CategoryType[] = useMemo(() => Object.values(CATEGORIES), [])
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>()
 
   useEffect(() => {
     if (value) {
-      setSelectedCategory(value)
+      setSelectedCategory(CATEGORIES[value])
     }
   }, [])
 
   return (
-    <Container {...props} statusBarTranslucent={true} presentationStyle="fullScreen">
+    <Container statusBarTranslucent={true} presentationStyle="fullScreen" {...props}>
       <Header>
         <Title>Categoria</Title>
       </Header>
       <CategoriesList
-        data={DATA}
+        data={categories}
         keyExtractor={(item: CategoryType) => item.id}
         renderItem={({ item }: { item: CategoryType }, index: number) => <>
           { index === 0 ? null : <Separator  /> }
           <Category
             category={item}
             onPress={() => setSelectedCategory(item)}
-            active={item.id === selectedCatedory?.id}
+            active={item.id === selectedCategory?.id}
           />
         </>}
       />
       <Footer>
-        <Button label="Selecionar" onPress={() => selectedCatedory && onSelect(selectedCatedory)} />
+        <Button label="Selecionar" onPress={() => selectedCategory && onSelect(selectedCategory.id)} />
       </Footer>
     </Container>
   )
