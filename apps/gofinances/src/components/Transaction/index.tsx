@@ -1,16 +1,11 @@
-import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from './style';
+import CATEGORIES, { CategoryType } from './../../global/categories'
 
-interface Category {
-  id: string;
-  name: string,
-  color: string,
-  icon: string,
-}
+import { Container, Title, Amount, Footer, Description, Icon, Category, TransactionDate } from './style';
 
 export interface TransactionItemProps {
   name: string,
   type: 'deposit' | 'withdrawal',
-  category: Category,
+  category: number,
   amount: number,
   date: Date,
 }
@@ -21,6 +16,7 @@ interface TransactionProps {
 
 export default function Transaction ({ data }: TransactionProps) {
   const { name, type, category, amount, date } = data
+  const { icon: categoryIcon, name: categoryName } = CATEGORIES[category]
 
   const formmatedDate = new Intl.DateTimeFormat('pt-BR',
     { year: "numeric", month: "long", day: "numeric", }
@@ -38,8 +34,8 @@ export default function Transaction ({ data }: TransactionProps) {
       </Amount>
       <Footer>
         <Description>
-          <Icon name={category.icon} type={type}/>
-          <Category>{category.name}</Category>
+          <Icon name={categoryIcon} type={type}/>
+          <Category>{categoryName}</Category>
         </Description>
         <TransactionDate>{formmatedDate}</TransactionDate>
       </Footer>
