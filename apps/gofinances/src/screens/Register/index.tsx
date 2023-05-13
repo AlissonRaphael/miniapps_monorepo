@@ -14,7 +14,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Type from '../../components/Type';
 import Select from '../../components/Select';
-import Category, { CategoryType } from '../Category';
+import Category from '../Category';
 
 interface NavigationProps {
   navigate: (value: string) => void,
@@ -22,7 +22,7 @@ interface NavigationProps {
 
 export default function Register () {
   const [type, setType] = useState<string>("")
-  const [category, setCategory] = useState<CategoryType | null>(null)
+  const [category, setCategory] = useState<number | undefined>()
 
   const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) })
   const navigation = useNavigation<NavigationProps>()
@@ -31,12 +31,12 @@ export default function Register () {
 
   const handleReset = useCallback(() => {
     setType('')
-    setCategory(null)
+    setCategory(undefined)
     reset()
   }, [])
 
-  const handleCategoryModalClose = useCallback((category: CategoryType) => {
-    setCategory(category)
+  const handleCategoryModalClose = useCallback((categoryId: number) => {
+    setCategory(categoryId)
     setCategoryModalIsOpen(false)
   }, [])
 
