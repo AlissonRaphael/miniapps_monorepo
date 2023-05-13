@@ -22,7 +22,7 @@ interface NavigationProps {
 
 export default function Register () {
   const [type, setType] = useState<string>("")
-  const [category, setCategory] = useState<number | undefined>()
+  const [category, setCategory] = useState<number | null>(null)
 
   const { control, handleSubmit, formState: { errors }, reset } = useForm({ resolver: yupResolver(schema) })
   const navigation = useNavigation<NavigationProps>()
@@ -31,7 +31,7 @@ export default function Register () {
 
   const handleReset = useCallback(() => {
     setType('')
-    setCategory(undefined)
+    setCategory(null)
     reset()
   }, [])
 

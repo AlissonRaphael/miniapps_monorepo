@@ -11,7 +11,7 @@ interface SelectFormProps extends TouchableOpacityProps {
 }
 
 export default function SelectForm ({ placeholder, category, ...props }: SelectFormProps) {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>()
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null);
 
   useEffect(() => {
     if (category) {
