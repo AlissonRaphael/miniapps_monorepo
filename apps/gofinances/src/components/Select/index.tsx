@@ -7,7 +7,7 @@ import { Container, Category, Icon, Title, Chevron } from './styles';
 
 interface SelectFormProps extends TouchableOpacityProps {
   placeholder: string,
-  category: number | undefined,
+  category: number | null,
 }
 
 export default function SelectForm ({ placeholder, category, ...props }: SelectFormProps) {

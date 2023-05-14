@@ -17,7 +17,7 @@ import {
 } from './styles';
 
 interface CategoriesProps extends ModalProps {
-  value?: number | undefined,
+  value?: number | null,
   onSelect: (categoryId: number) => void,
 }
 
