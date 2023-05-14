@@ -7,7 +7,7 @@ import { TransactionItemProps } from '../../components/Transaction';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import AmountList from '../../components/AmountList';
 
-import { Container, Header, Title } from './styles';
+import { Container, Header, Title, AmountButtons, AmountButton, Icon } from './styles';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: string,
@@ -16,6 +16,7 @@ export interface TransactionListProps extends TransactionItemProps {
 export default function Summary () {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [transactions, setTransactions] = useState<TransactionListProps[]>([])
+  const [amountFilter, setAmountFilter] = useState<string>('deposit')
 
   const loadTransactions = async () => {
     setIsLoading(true)
@@ -39,9 +40,18 @@ export default function Summary () {
     <Container>
       <Header>
         <Title>Resumo</Title>
+
+        <AmountButtons>
+          <AmountButton onPress={() => setAmountFilter('deposit')}>
+            <Icon name="arrow-circle-up" type="deposit" />
+          </AmountButton>
+          <AmountButton onPress={() => setAmountFilter('withdrawal')}>
+            <Icon name="arrow-circle-down" type="withdrawal" />
+          </AmountButton>
+        </AmountButtons>
       </Header>
 
-      <AmountList transactions={transactions} />
+      <AmountList transactions={transactions} amountFilter={amountFilter}  />
     </Container>
   )
 }
