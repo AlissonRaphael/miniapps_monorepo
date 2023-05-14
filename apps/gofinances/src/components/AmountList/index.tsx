@@ -3,10 +3,11 @@ import { useCallback, useMemo } from 'react';
 import { TransactionListProps } from '../../screens/Dashboard';
 import CATEGORIES from '../../global/categories';
 
-import { Container, Item, Title, Amounts, Amount, Icon, Text } from './styles';
+import { Container, Item, Title, Amount } from './styles';
 
 interface AmountListProps {
-  transactions: TransactionListProps[]
+  transactions: TransactionListProps[],
+  amountFilter: 'deposit' | 'withdrawal',
 }
 
 interface Dictionary<TValue> {
@@ -21,15 +22,15 @@ interface Category {
   color: string,
 }
 
-export default function AmountList ({ transactions }: AmountListProps) {
+export default function AmountList ({ transactions, amountFilter }: AmountListProps) {
   const amountFormatter = useCallback((amount: number) => {
     return new Intl.NumberFormat('pt-BR',
       { style: 'currency', currency: 'BRL' }
     ).format(amount)
   }, [])
 
-  const [categories, totals] = useMemo(() => {
-    const processor = {} as Dictionary<Category>
+  const categories = useMemo(() => {
+    const categories = {} as Dictionary<Category>
     let deposit = 0
     let withdrawal = 0
 
@@ -37,23 +38,23 @@ export default function AmountList ({ transactions }: AmountListProps) {
       const { amount, type, category } = transaction
       const { id, name, color } = CATEGORIES[category]
 
-      if (processor[name] === undefined) {
-        processor[name] = { deposit: 0, withdrawal: 0, id, name, color }
+      if (categories[name] === undefined) {
+        categories[name] = { deposit: 0, withdrawal: 0, id, name, color }
       }
 
       if (type === 'deposit') {
-        processor[name].deposit += amount
+        categories[name].deposit += amount
         deposit += amount
       }
 
       if (type === 'withdrawal') {
-        processor[name].withdrawal += amount
+        categories[name].withdrawal += amount
         withdrawal += amount
       }
     })
 
-    return [Object.values(processor), { deposit, withdrawal }]
-  }, [])
+    return Object.values(categories)
+  }, [transactions])
 
   return (
     <Container>
@@ -62,16 +63,11 @@ export default function AmountList ({ transactions }: AmountListProps) {
         return (
           <Item key={id} borderColor={color}>
             <Title>{name}</Title>
-            <Amounts>
               <Amount>
-                <Text>{amountFormatter(deposit)}</Text>
-                <Icon name="arrow-circle-up" type="deposit" />
+                {amountFilter === 'deposit' ?
+                  amountFormatter(deposit) :
+                  amountFormatter(withdrawal) }
               </Amount>
-              <Amount>
-              <Text>{amountFormatter(withdrawal)}</Text>
-                <Icon name="arrow-circle-down" type="withdrawal" />
-              </Amount>
-            </Amounts>
           </Item>
         )
       })}

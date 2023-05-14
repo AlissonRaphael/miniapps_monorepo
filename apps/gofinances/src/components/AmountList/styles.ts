@@ -1,12 +1,7 @@
-import styled, { css } from 'styled-components/native';
-import { FontAwesome } from '@expo/vector-icons';
+import styled from 'styled-components/native';
 
 interface ItemProps {
   borderColor: string,
-}
-
-interface TypeProps {
-  type: 'deposit' | 'withdrawal',
 }
 
 export const Container = styled.ScrollView`
@@ -33,31 +28,7 @@ export const Title = styled.Text`
   font-size: 16px;
 `
 
-export const Amounts = styled.View`
-  align-items: space-between;
-`
-
-export const Amount = styled.View`
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-`
-
-export const Text = styled.Text`
+export const Amount = styled.Text`
   font-size: 14px;
   margin-right: 8px;
-`
-
-export const Icon = styled(FontAwesome).attrs((props) => ({
-  ...props,
-  size: props.size || 14,
-}))<TypeProps>`
-
-  ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.colors.success};
-  `}
-
-  ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.colors.attention};
-  `}
 `
