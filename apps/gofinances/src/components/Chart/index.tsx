@@ -4,14 +4,40 @@ import { useTheme } from "styled-components";
 
 import ActivityIndicator from "../ActivityIndicator";
 
+import { Container } from "./styles";
 
-export default function Chart({ categories }) {
+interface ChartProps {
+  categories: Category[]
+}
+
+interface Category {
+  id: number,
+  deposit: number,
+  withdrawal: number,
+  max: number,
+  name: string,
+  color: string,
+}
+
+type Amounts = {
+  x: string,
+  y: number
+}
+
+type Maxima = {
+  [key: string]: number
+}
+
+
+export default function Chart({ categories }: ChartProps) {
+  const [data, setData] = useState<Amounts[][]>()
+  const [maxima, setMaxima] = useState<Maxima>()
   const { colors: { success, attention }} = useTheme()
 
   useEffect(() => {
-    const deposits = []
-    const withdrawals = []
-    const maxima = {}
+    const deposits: Amounts[] = []
+    const withdrawals: Amounts[] = []
+    const maxima: Maxima = {}
 
     categories.forEach(category => {
       const { deposit, withdrawal, max, name } = category
