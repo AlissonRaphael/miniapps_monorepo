@@ -9,7 +9,6 @@ interface TypeProps {
 }
 
 export const Container = styled.View`
-  padding-bottom: ${BottomHeightHelper()}px;
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background };
 `

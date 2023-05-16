@@ -10,12 +10,11 @@ interface TypeProps {
 }
 
 export const Container = styled.ScrollView`
-  padding: 16px 24px;
   width: 100%;
 `
 
 export const Item = styled.View<ItemProps>`
-  margin: 4px 0px;
+  margin: 4px 24px;
   border-radius: 6px;
   border-left-width: 6px;
   border-left-color: ${(props) => props.borderColor};
