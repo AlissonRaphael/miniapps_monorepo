@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isAfter, isBefore, addMonths } from 'date-fns';
+import { format } from 'date-fns';
+import { groupBy } from 'lodash';
 
 import { $transactions } from '../../global/storage';
 import { TransactionItemProps } from '../../components/Transaction';
@@ -29,6 +30,7 @@ interface Category {
   max: number,
   name: string,
   color: string,
+  date: string,
 }
 
 export default function Summary () {
@@ -40,34 +42,38 @@ export default function Summary () {
     const categories = {} as Dictionary<Category>
 
     transactions.forEach((transaction: TransactionListProps) => {
-      const { amount, type, category, date } = transaction
+      const { amount, type, category, date: transactionDate } = transaction
       const { id, name, color } = CATEGORIES[category]
+      const date = format(new Date(transactionDate), 'MM-yyyy')
 
-      if (isAfter(new Date(date), selectedDate) && isBefore(new Date(date), addMonths(selectedDate, 1))) {
-        if (categories[name] === undefined) {
-          categories[name] = { deposit: 0, withdrawal: 0, max: 0, id, name, color }
-        }
-  
-        if (type === 'deposit') {
-          categories[name].deposit += amount
-        }
-  
-        if (type === 'withdrawal') {
-          categories[name].withdrawal += amount
-        }
-  
-        if (categories[name].deposit > categories[name].max) {
-          categories[name].max = categories[name].deposit
-        }
-  
-        if (categories[name].withdrawal > categories[name].max) {
-          categories[name].max = categories[name].withdrawal
-        }
+      if (categories[name] === undefined) {
+        categories[name] = { deposit: 0, withdrawal: 0, max: 0, id, name, color, date }
+      }
+
+      if (type === 'deposit') {
+        categories[name].deposit += amount
+      }
+
+      if (type === 'withdrawal') {
+        categories[name].withdrawal += amount
+      }
+
+      if (categories[name].deposit > categories[name].max) {
+        categories[name].max = categories[name].deposit
+      }
+
+      if (categories[name].withdrawal > categories[name].max) {
+        categories[name].max = categories[name].withdrawal
       }
     })
 
-    return Object.values(categories)
-  }, [transactions, selectedDate])
+    return groupBy(Object.values(categories), 'date')
+  }, [transactions])
+
+  const filtered = useMemo(() => {
+    const date = format(new Date(selectedDate), 'MM-yyyy')
+    return categories[date] || []
+  }, [categories, selectedDate])
 
   const loadTransactions = async () => {
     setIsLoading(true)
@@ -93,8 +99,8 @@ export default function Summary () {
         <Title>Resumo</Title>
       </Header>
       <SelectDate date={selectedDate} onChange={(date: Date) => setSelectedDate(date)} />
-      <Chart categories={categories} />
-      <AmountList categories={categories} />
+      <Chart categories={filtered} />
+      <AmountList categories={filtered} />
     </Container>
   )
 }
