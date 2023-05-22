@@ -14,7 +14,9 @@ export const Container = styled.View`
 export const Button = styled.TouchableOpacity.attrs((props) => ({
   ...props,
   activeOpacity: props.activeOpacity || 0.6,
-}))``
+}))`
+  padding: 4px;
+`
 
 export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
