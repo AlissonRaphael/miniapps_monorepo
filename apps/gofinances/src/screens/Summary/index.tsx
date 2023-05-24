@@ -13,7 +13,7 @@ import SelectDate from '../../components/SelectDate';
 import CATEGORIES from '../../global/categories';
 
 
-import { Container, Header, Title } from './styles';
+import { Container, Header, Title, Content, Text } from './styles';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: string,
@@ -99,8 +99,10 @@ export default function Summary () {
         <Title>Resumo</Title>
       </Header>
       <SelectDate date={selectedDate} onChange={(date: Date) => setSelectedDate(date)} />
-      <Chart categories={filtered} />
-      <AmountList categories={filtered} />
+      { filtered.length ? <>
+        <Chart categories={filtered} />
+        <AmountList categories={filtered} />
+      </> : <Content><Text>Sem registros no mês</Text></Content> }
     </Container>
   )
 }
