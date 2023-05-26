@@ -2,38 +2,49 @@ import React from 'react';
 
 import Apple from '../../assets/apple.svg';
 import Google from '../../assets/google.svg';
+import SocialButton from '../../components/SocialButton';
 
 import {
   Container,
-  Top,
-  Bottom,
-  LogoContainer,
+  Header,
+  Footer,
   Logo,
-  Name,
-  ItalicText,
-  BoldText,
-  Title,
   Text,
+  Italic,
+  Bold,
+  Title,
+  Message,
+  Buttons
 } from './styles';
 
 export default function SignIn ({}) {
   return (
     <Container>
-      <Top>
-        <LogoContainer>
-          <Logo />
-          <Name>
-            <ItalicText>finances</ItalicText>
-            <BoldText>Ctrl</BoldText>
-          </Name>
-        </LogoContainer>
+      <Header>
+        <Logo />
+        <Text>
+          <Italic>finances</Italic>
+          <Bold>Ctrl</Bold>
+        </Text>
 
         <Title>Controle suas finanças de forma muito simples</Title>
-        <Text>Faça seu login com uma das contas abaixo</Text>
-      </Top>
+        <Message>Faça seu login com uma das contas abaixo</Message>
+      </Header>
 
-      <Bottom>
-      </Bottom>
+      <Footer>
+        <Buttons>
+          <SocialButton
+            name="Entrar com Google"
+            icon={Google}
+            onPress={() => console.log('google')}
+          />
+          <SocialButton
+            name="Entrar com Apple"
+            icon={Apple}
+            onPress={() => console.log('apple')}
+          />
+        </Buttons>
+      </Footer>
     </Container>
   )
 }
