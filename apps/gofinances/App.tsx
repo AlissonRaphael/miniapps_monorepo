@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Theme from './src/global/theme';
 import Routes from './src/routes/app.routes';
+import SignIn from './src/screens/SignIn';
+import { AuthProvider } from './src/hooks/auth';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +21,9 @@ export default function App() {
   return (
     <ThemeProvider theme={Theme}>
       <NavigationContainer>
-        <Routes />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   )

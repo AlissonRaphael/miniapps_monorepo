@@ -3,6 +3,7 @@ import React from 'react';
 import Apple from '../../assets/apple.svg';
 import Google from '../../assets/google.svg';
 import SocialButton from '../../components/SocialButton';
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,
@@ -18,6 +19,8 @@ import {
 } from './styles';
 
 export default function SignIn ({}) {
+  const { user } = useAuth()
+
   return (
     <Container>
       <Header>
