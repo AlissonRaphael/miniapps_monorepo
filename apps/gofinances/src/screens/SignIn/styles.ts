@@ -15,6 +15,7 @@ export const Header = styled.View`
 export const Footer = styled.View`
   height: 30%;
   background-color: ${({ theme }) => theme.colors.secondary};
+  position: relative;
 `
 
 export const Logo = styled(MaterialIcons).attrs((props) => ({
@@ -22,7 +23,7 @@ export const Logo = styled(MaterialIcons).attrs((props) => ({
   name: "monetization-on",
   size: props.size || 65,
 }))`
-  margin-top: 20%;
+  margin-top: 25%;
   align-self: center;
   color: ${({ theme }) => theme.colors.secondary};
 `
@@ -46,7 +47,8 @@ export const Bold = styled.Text`
 `
 
 export const Title = styled.Text`
-  padding: 24px 32px;
+  margin-top: 32px;
+  padding: 0px 32px;
   font-size: 34px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
@@ -54,18 +56,18 @@ export const Title = styled.Text`
 `
 
 export const Message = styled.Text`
+  margin-top: 48px;
   padding: 0px 108px;
   font-size: 18px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text};
-  position: relative;
+  color: ${({ theme }) => theme.colors.shape};
 `
 
 export const Buttons = styled.View`
-  padding: 0px 28px;
+  padding: 0px 38px;
   position: absolute;
-  top: -26px;
+  top: -30px;
   left: 0;
   width: 100%;
 `

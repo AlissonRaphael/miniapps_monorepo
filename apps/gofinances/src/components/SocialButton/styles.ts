@@ -6,7 +6,7 @@ export const Button = styled(TouchableOpacity).attrs((props) => ({
   activeOpacity: props.activeOpacity || 0.6,
 }))`
   border-radius: 6px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.shape};
@@ -16,12 +16,12 @@ export const Logo = styled.View`
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.background};
-  padding: 12px;
+  padding: 16px;
 `
 
 export const Label = styled.Text`
   flex: 1;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors.text};
