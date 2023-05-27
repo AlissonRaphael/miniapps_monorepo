@@ -1,12 +1,6 @@
-import styled, { css } from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import styled from 'styled-components/native';
 
 import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
-
-interface TypeProps {
-  type: 'deposit' | 'withdrawal',
-}
 
 export const Container = styled.View`
   flex: 1;
