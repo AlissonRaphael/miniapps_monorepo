@@ -1,5 +1,6 @@
 import React from 'react';
 import { SvgProps } from 'react-native-svg';
+import { TouchableOpacityProps } from 'react-native';
 
 import {
   Button,
@@ -7,15 +8,15 @@ import {
   Label,
 } from './styles';
 
-interface SocialButtonProps {
+interface SocialButtonProps extends TouchableOpacityProps {
   name: string,
   icon: React.FC<SvgProps>,
   onPress: () => void,
 }
 
-export default function SocialButton ({ name, icon: SVG, onPress }: SocialButtonProps) {
+export default function SocialButton ({ name, icon: SVG, onPress, ...props }: SocialButtonProps) {
   return (
-    <Button onPress={onPress}>
+    <Button onPress={onPress} {...props} >
       <Logo>
         <SVG />
       </Logo>
