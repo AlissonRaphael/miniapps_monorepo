@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "financesCTRL",
-    "slug": "financesCTRL",
+    "slug": "finances_ctrl",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
