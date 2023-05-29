@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export default function SignIn ({}) {
-  const { user, googleSignIn, requested } = useAuth()
+  const { googleSignIn, requested } = useAuth()
 
   return (
     <Container>
