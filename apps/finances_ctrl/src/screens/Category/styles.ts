@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
-import { CategoryType } from '.';
+import { CategoryType } from '../../global/categories';
 
 
 export const Container = styled(Modal)`
