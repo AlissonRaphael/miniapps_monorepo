@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Header, Title, Icon, Footer, Amount, LastTransaction } from './styles';
 
-interface Props {
+interface CardProps {
   type: 'deposit' | 'withdrawal' | 'total',
   amount: number,
   lastTransaction: Date,
@@ -14,7 +14,7 @@ const TYPE = {
   total: { title: 'Total', icon: 'dollar' },
 }
 
-export default function Card ({ type, amount, lastTransaction }: Props) {
+export default function Card ({ type, amount, lastTransaction }: CardProps) {
   const formmatedLastTransaction = new Intl.DateTimeFormat('pt-BR',
     { year: "numeric", month: "long", day: "numeric", }
   ).format(lastTransaction)
