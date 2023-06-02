@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { VictoryChart, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel, VictoryTheme } from "victory-native";
-import { useTheme } from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { VictoryChart, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel, VictoryTheme } from 'victory-native';
+import { useTheme } from 'styled-components';
 
-import ActivityIndicator from "../ActivityIndicator";
+import ActivityIndicator from '../ActivityIndicator';
 
-import { Container } from "./styles";
+import { Container } from './styles';
 
 interface ChartProps {
   categories: Category[]
