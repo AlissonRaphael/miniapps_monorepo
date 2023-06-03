@@ -8,7 +8,6 @@ export const Input = styled(TextInput)<InputProps>`
   border-radius: 5px;
   width: 100%;
   padding: 16px 18px;
-
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors.text_dark};

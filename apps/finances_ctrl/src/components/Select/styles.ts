@@ -10,11 +10,9 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
   border-radius: 5px;
   padding: 18px;
   width: 100%;
-
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
   background-color: ${({ theme }) => theme.colors.shape};
 `
 

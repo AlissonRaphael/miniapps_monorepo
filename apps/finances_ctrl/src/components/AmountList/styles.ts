@@ -18,9 +18,7 @@ export const Item = styled.View<ItemProps>`
   border-radius: 6px;
   border-left-width: 6px;
   border-left-color: ${(props) => props.borderColor};
-
   padding: 16px;
-
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

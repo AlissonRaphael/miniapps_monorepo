@@ -17,7 +17,6 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
   border: 1px solid ${({ theme }) => theme.colors.text};
   width: 49%;
   padding: 16px;
-
   flex-direction: row;
   align-items: center;
   justify-content: center;

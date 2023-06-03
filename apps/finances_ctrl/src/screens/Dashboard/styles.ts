@@ -13,11 +13,9 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   padding-top: ${StatusBarHeightHelper() + 36}px;
-
   width: 100%;
   height: 40%;
   align-items: center;
-
   background-color: ${({ theme }) => theme.colors.primary};
 `
 
@@ -25,7 +23,6 @@ export const Wrapper = styled.View`
   flex-direction: row;
   padding: 0 24px;
   width: 100%;
-
   align-items: center;
   justify-content: space-between;
 `
@@ -38,7 +35,6 @@ export const User = styled.View`
 export const Avatar = styled.Image`
   height: 48px;
   width: 48px;
-
   border-radius: 10px;
 `
 
@@ -78,7 +74,6 @@ export const Cards = styled.ScrollView.attrs((props) => ({
 export const History = styled.View`
   flex: 1;
   padding: 0 24px;
-
   margin-top: 105px;
 `
 

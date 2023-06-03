@@ -14,12 +14,10 @@ export const Container = styled(Modal)`
 
 export const Header = styled.View`
   padding-top: ${StatusBarHeightHelper()}px;
-
   width: 100%;
   height: 114px;
   align-items: center;
   justify-content: center;
-
   background-color: ${({ theme }) => theme.colors.primary};
 `
 
@@ -48,10 +46,8 @@ export const CategoryItem = styled(TouchableOpacity).attrs((props) => ({
 }))<CategoryItemProps>`
   padding: 18px;
   width: 100%;
-
   flex-direction: row;
   align-items: center;
-
   background-color: ${({ theme, active }) => active ? theme.colors.secondary_light : theme.colors.shape};
 `
 

@@ -8,10 +8,8 @@ export const Button = styled(TouchableOpacity).attrs((props) => ({
   border-radius: 5px;
   width: 100%;
   padding: 18px;
-
   align-items: center;
   justify-content: center;
-
   background-color: ${({ theme }) => theme.colors.secondary};
 `
 
