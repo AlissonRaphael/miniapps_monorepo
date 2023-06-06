@@ -74,7 +74,6 @@ export default function Register () {
         <Header>
           <Title>Cadastro</Title>
         </Header>
-
         <Form>
           <Fields>
             <Input
@@ -122,6 +121,5 @@ export default function Register () {
         />
       </Container>
     </TouchableWithoutFeedback>
-
   )
 }
