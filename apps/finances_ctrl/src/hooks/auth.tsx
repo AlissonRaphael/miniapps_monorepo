@@ -101,8 +101,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, [])
 
+  const signOut = useCallback(async () => {
+    setUser({} as User)
+    await AsyncStorage.removeItem($users)
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, requested, googleSignIn: promptAsync }}>
+    <AuthContext.Provider value={{ user, requested, googleSignIn: promptAsync, appleSignIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
