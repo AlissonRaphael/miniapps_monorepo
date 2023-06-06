@@ -2,12 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
-import { NavigationContainer } from '@react-navigation/native';
 
 import Theme from './src/global/theme';
-import Routes from './src/routes/app.routes';
-import SignIn from './src/screens/SignIn';
 import { AuthProvider } from './src/hooks/auth';
+import Routes from './src/routes'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,11 +18,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={Theme}>
-      <NavigationContainer>
-        <AuthProvider>
-          <SignIn />
-        </AuthProvider>
-      </NavigationContainer>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   )
 }

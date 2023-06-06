@@ -9,7 +9,7 @@ import Summary from '../screens/Summary';
 
 const Tab = createBottomTabNavigator()
 
-export default function Routes () {
+export default function AppRoutes () {
   return (
     <Tab.Navigator
       screenOptions={{
