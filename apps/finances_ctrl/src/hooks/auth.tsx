@@ -22,7 +22,6 @@ interface User {
 
 interface AuthContextProps {
   user: User,
-  requested: boolean,
   googleSignIn: () => void,
   appleSignIn: () => void,
   signOut: () => void,
@@ -37,15 +36,17 @@ export function useAuth(){
 export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState<string | undefined>()
   const [user, setUser] = useState<User>({} as User)
-  const [requested, setRequested] = useState<boolean>(false)
+
+  const loadTransactions = async () => {
+    const user = await AsyncStorage.getItem($users)
+    if (user) {
+      setUser(JSON.parse(user || "[]"))
+    }
+  }
 
   useEffect(() => {
-    (async () => {
-      if (user.id) {
-        await AsyncStorage.setItem($users, JSON.stringify(user))
-      }
-    })()
-  }, [user])
+    loadTransactions()
+  }, [])
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: "218542519618-qq12no7rkl9vlhrnvq4jk685hjh1vrdc.apps.googleusercontent.com",
@@ -60,10 +61,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, [response, token])
 
-  useEffect(() => {
-    setRequested(!requested)
-  }, [request])
-
   const getUser = useCallback(async () => {
     try {
       const response = await fetch(
@@ -71,7 +68,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         { headers: { Authorization: `Bearer ${token}` } },
       )
       const { id, email, name, picture: avatar } = await response.json()
-      setUser({ id, email, name, avatar })
+      const user = { id, email, name, avatar }
+      setUser(user)
+      await AsyncStorage.setItem($users, JSON.stringify(user))
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível se autenticar')
@@ -88,12 +87,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       })
 
       if (credential) {
-        setUser({
+        const user = {
           id: String(credential.user),
           email: credential.email!,
           name: credential.fullName?.givenName!,
           avatar: null,
-        })
+        }
+        setUser(user)
+        await AsyncStorage.setItem($users, JSON.stringify(user))
       }
     } catch (error) {
       console.log(error)
@@ -107,7 +108,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, requested, googleSignIn: promptAsync, appleSignIn, signOut }}>
+    <AuthContext.Provider value={{ user, googleSignIn: promptAsync, appleSignIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
