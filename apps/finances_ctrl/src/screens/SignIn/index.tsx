@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export default function SignIn ({}) {
-  const { appleSignIn, googleSignIn, requested } = useAuth()
+  const { appleSignIn, googleSignIn } = useAuth()
 
   return (
     <Container>
@@ -40,7 +40,6 @@ export default function SignIn ({}) {
             name="Entrar com Google"
             icon={Google}
             onPress={() => googleSignIn()}
-            disabled={requested}
           />
           <SocialButton
             name="Entrar com Apple"
