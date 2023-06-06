@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export default function SignIn ({}) {
-  const { googleSignIn, requested } = useAuth()
+  const { appleSignIn, googleSignIn, requested } = useAuth()
 
   return (
     <Container>
@@ -45,7 +45,7 @@ export default function SignIn ({}) {
           <SocialButton
             name="Entrar com Apple"
             icon={Apple}
-            onPress={() => console.log('apple')}
+            onPress={() => appleSignIn()}
           />
         </Buttons>
       </Footer>

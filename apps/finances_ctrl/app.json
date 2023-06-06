@@ -6,6 +6,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "scheme": "financesctrl"
+    "scheme": "financesctrl",
+    "plugins": ["expo-apple-authentication"]
   }
 }
