@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { FlatList, ListRenderItem } from 'react-native';
+import { FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusbar';
@@ -52,6 +52,14 @@ export const Name = styled.Text`
   font-size: 18px;
   color: ${({ theme }) => theme.colors.shape };
   font-family: ${({ theme }) => theme.fonts.bold };
+`
+
+export const LogoutButton = styled(TouchableOpacity).attrs((props) => ({
+  ...props,
+  activeOpacity: props.activeOpacity || 0.6,
+}))`
+  padding: 8px;
+  background-color: red;
 `
 
 export const LogoutIcon = styled(Ionicons).attrs((props) => ({

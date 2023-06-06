@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import Transaction, { TransactionItemProps } from '../../components/Transaction';
 import { $transactions } from '../../global/storage';
 import ActivityIndicator from '../../components/ActivityIndicator';
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,
@@ -16,6 +17,7 @@ import {
   Details,
   Greeting,
   Name,
+  LogoutButton,
   LogoutIcon,
   Cards,
   History,
@@ -88,7 +90,9 @@ export default function Dashboard() {
               <Name>{user.name}</Name>
             </Details>
           </User>
-          <LogoutIcon />
+          <LogoutButton onPress={() => console.log('ok')}>
+            <LogoutIcon />
+          </LogoutButton>
         </Wrapper>
       </Header>
 
