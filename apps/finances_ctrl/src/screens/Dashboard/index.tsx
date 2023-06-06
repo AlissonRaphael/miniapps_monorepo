@@ -30,6 +30,7 @@ export interface TransactionListProps extends TransactionItemProps {
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<TransactionListProps[]>([])
+  const { user } = useAuth()
 
   const loadTransactions = async () => {
     setIsLoading(true)
@@ -81,10 +82,10 @@ export default function Dashboard() {
       <Header>
         <Wrapper>
           <User>
-            <Avatar source={{ uri: 'https://avatars.githubusercontent.com/u/67491541?v=4' }} />
+            <Avatar source={{ uri: user?.avatar }} />
             <Details>
               <Greeting>Olá,</Greeting>
-              <Name>Alisson</Name>
+              <Name>{user.name}</Name>
             </Details>
           </User>
           <LogoutIcon />
