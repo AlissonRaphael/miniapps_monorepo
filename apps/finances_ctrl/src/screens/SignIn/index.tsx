@@ -18,7 +18,7 @@ import {
   Buttons
 } from './styles';
 
-export default function SignIn ({}) {
+export default function SignIn () {
   const { appleSignIn, googleSignIn } = useAuth()
 
   return (

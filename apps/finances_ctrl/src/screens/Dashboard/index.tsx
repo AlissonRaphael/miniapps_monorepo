@@ -19,6 +19,7 @@ import {
   Name,
   LogoutButton,
   LogoutIcon,
+  CardsContainer,
   Cards,
   History,
   Transactions,
@@ -84,7 +85,7 @@ export default function Dashboard() {
       <Header>
         <Wrapper>
           <User>
-            <Avatar source={{ uri: user?.avatar }} />
+            <Avatar source={{ uri: user?.avatar || '' }} />
             <Details>
               <Greeting>Olá,</Greeting>
               <Name>{user.name}</Name>
@@ -96,11 +97,13 @@ export default function Dashboard() {
         </Wrapper>
       </Header>
 
-      <Cards>
-        <Card type="deposit" amount={deposit} lastTransaction={lastDeposit} />
-        <Card type="withdrawal" amount={withdrawal} lastTransaction={lastWithdrawal} />
-        <Card type="total" amount={total} lastTransaction={lastTransaction} />
-      </Cards>
+      <CardsContainer>
+        <Cards>
+          <Card type="deposit" amount={deposit} lastTransaction={lastDeposit} />
+          <Card type="withdrawal" amount={withdrawal} lastTransaction={lastWithdrawal} />
+          <Card type="total" amount={total} lastTransaction={lastTransaction} />
+        </Cards>
+      </CardsContainer>
 
       <History>
         <Title>Listagem</Title>
