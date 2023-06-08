@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   const loadTransactions = async () => {
     setIsLoading(true)
-    const data = await AsyncStorage.getItem($transactions)
+    const data = await AsyncStorage.getItem(`${$transactions}:${user.id}`)
     if (data) {
       setData(JSON.parse(data || "[]"))
     }

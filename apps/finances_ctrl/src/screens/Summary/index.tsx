@@ -14,6 +14,7 @@ import CATEGORIES from '../../global/categories';
 
 
 import { Container, Header, Title, Content, Text } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: string,
@@ -37,6 +38,7 @@ export default function Summary () {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [transactions, setTransactions] = useState<TransactionListProps[]>([])
+  const { user } = useAuth()
 
   const categories = useMemo(() => {
     const categories = {} as Dictionary<Category>
@@ -77,7 +79,7 @@ export default function Summary () {
 
   const loadTransactions = async () => {
     setIsLoading(true)
-    const data = await AsyncStorage.getItem($transactions)
+    const data = await AsyncStorage.getItem(`${$transactions}:${user.id}`)
     if (data) {
       const transactions = JSON.parse(data || "[]")
       setTransactions(transactions)

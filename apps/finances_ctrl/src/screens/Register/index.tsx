@@ -15,6 +15,7 @@ import Category from '../Category';
 
 import { Container, Header, Title, Form, Fields, Types } from './styles';
 import schema from './schema';
+import { useAuth } from '../../hooks/auth';
 
 interface NavigationProps {
   navigate: (value: string) => void,
@@ -28,6 +29,8 @@ export default function Register () {
   const navigation = useNavigation<NavigationProps>()
 
   const [categoryModalIsOpen, setCategoryModalIsOpen] = useState<boolean>(false)
+
+  const { user } = useAuth()
 
   const handleReset = useCallback(() => {
     setType('')
@@ -56,10 +59,10 @@ export default function Register () {
     }
 
     try {
-      const transactions = JSON.parse(await AsyncStorage.getItem($transactions) || "[]")
+      const transactions = JSON.parse(await AsyncStorage.getItem(`${$transactions}:${user.id}`) || "[]")
       const transaction = { id: String(uuid.v4()), ...model, category, type, date: new Date() }
       transactions.push(transaction)
-      await AsyncStorage.setItem($transactions, JSON.stringify(transactions))
+      await AsyncStorage.setItem(`${$transactions}:${user.id}`, JSON.stringify(transactions))
       handleReset()
       navigation.navigate('Transações')
     } catch (error) {
