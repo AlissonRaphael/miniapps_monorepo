@@ -32,7 +32,7 @@ export interface TransactionListProps extends TransactionItemProps {
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<TransactionListProps[]>([])
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   const loadTransactions = async () => {
     setIsLoading(true)
@@ -90,7 +90,7 @@ export default function Dashboard() {
               <Name>{user.name}</Name>
             </Details>
           </User>
-          <LogoutButton onPress={() => console.log('ok')}>
+          <LogoutButton onPress={signOut}>
             <LogoutIcon />
           </LogoutButton>
         </Wrapper>
