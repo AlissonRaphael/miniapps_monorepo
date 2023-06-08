@@ -56,10 +56,9 @@ export const Name = styled.Text`
 
 export const LogoutButton = styled(TouchableOpacity).attrs((props) => ({
   ...props,
-  activeOpacity: props.activeOpacity || 0.6,
+  activeOpacity: props.activeOpacity || 0.5,
 }))`
   padding: 8px;
-  background-color: red;
 `
 
 export const LogoutIcon = styled(Ionicons).attrs((props) => ({
@@ -70,14 +69,16 @@ export const LogoutIcon = styled(Ionicons).attrs((props) => ({
   color: ${({ theme }) => theme.colors.secondary}
 `
 
+export const CardsContainer = styled.View`
+  position: absolute;
+  top: ${StatusBarHeightHelper() + 36 + 75 + 26}px;
+`
+
 export const Cards = styled.ScrollView.attrs((props) => ({
   horizontal: true,
   showsHorizontalScrollIndicator: false,
   contentContainerStyle: { paddingHorizontal: 24 },
-}))`
-  position: absolute;
-  padding-top: ${StatusBarHeightHelper() + 36 + 75 + 26}px;
-`
+}))``
 
 export const History = styled.View`
   flex: 1;
