@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components';
 
 import ActivityIndicator from '../ActivityIndicator';
 
-import { Container } from './styles';
+import { Container, Content, Text } from './styles';
 
 interface ChartProps {
   categories: Category[]
@@ -53,6 +53,13 @@ export default function Chart({ categories }: ChartProps) {
 
   if (!data || !maxima) {
     return <ActivityIndicator />
+  }
+
+  const [ deposits, withdrawals ] = data
+  if (!deposits.length || !withdrawals.length) {
+    return <Content>
+      <Text>Registros Insuficientes</Text>
+    </Content>
   }
 
   return (
