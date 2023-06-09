@@ -11,10 +11,9 @@ import AmountList from '../../components/AmountList';
 import Chart from '../../components/Chart';
 import SelectDate from '../../components/SelectDate';
 import CATEGORIES from '../../global/categories';
-
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Header, Title, Content, Text } from './styles';
-import { useAuth } from '../../hooks/auth';
 
 export interface TransactionListProps extends TransactionItemProps {
   id: string,

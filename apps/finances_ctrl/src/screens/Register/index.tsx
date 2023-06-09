@@ -12,10 +12,10 @@ import Button from '../../components/Button';
 import Type from '../../components/Type';
 import Select from '../../components/Select';
 import Category from '../Category';
+import { useAuth } from '../../hooks/auth';
+import schema from './schema';
 
 import { Container, Header, Title, Form, Fields, Types } from './styles';
-import schema from './schema';
-import { useAuth } from '../../hooks/auth';
 
 interface NavigationProps {
   navigate: (value: string) => void,
