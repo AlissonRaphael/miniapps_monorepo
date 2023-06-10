@@ -2,11 +2,7 @@ import React from 'react';
 import { SvgProps } from 'react-native-svg';
 import { TouchableOpacityProps } from 'react-native';
 
-import {
-  Button,
-  Logo,
-  Label,
-} from './styles';
+import { Button, Logo, Label } from './styles';
 
 interface SocialButtonProps extends TouchableOpacityProps {
   name: string,
