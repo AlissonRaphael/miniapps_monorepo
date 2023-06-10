@@ -64,16 +64,12 @@ export default function Chart({ categories }: ChartProps) {
 
   return (
     <Container>
-      <VictoryChart polar
-        theme={VictoryTheme.material}
-        domain={{ y: [ 0, 1 ] }}
-      >
-        <VictoryGroup colorScale={[success, attention]}
+      <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [ 0, 1 ] }}>
+        <VictoryGroup
+          colorScale={[success, attention]}
           style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         >
-          {data.map((data, i) => {
-            return <VictoryArea key={i} data={data}/>;
-          })}
+          {data.map((data, i) => <VictoryArea key={i} data={data}/>)}
         </VictoryGroup>
       {
         Object.keys(maxima).map((key, i) => {
@@ -84,9 +80,7 @@ export default function Chart({ categories }: ChartProps) {
                 axis: { stroke: "none" },
                 grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 }
               }}
-              tickLabelComponent={
-                <VictoryLabel labelPlacement="perpendicular"/>
-              }
+              tickLabelComponent={<VictoryLabel labelPlacement="perpendicular"/>}
               labelPlacement="perpendicular"
               axisValue={i + 1} label={key}
               tickFormat={(t) => `${Math.ceil(t * maxima[key])}$`}
@@ -103,7 +97,6 @@ export default function Chart({ categories }: ChartProps) {
             grid: { stroke: "grey", opacity: 0.5 }
           }}
         />
-
       </VictoryChart>
     </Container>
   )
