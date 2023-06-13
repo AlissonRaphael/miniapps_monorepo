@@ -9,12 +9,12 @@ export const Header = styled.View`
   height: 70%;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.light.primary};
 `
 
 export const Footer = styled.View`
   height: 30%;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.light.secondary};
   position: relative;
 `
 
@@ -25,7 +25,7 @@ export const Logo = styled(MaterialIcons).attrs((props) => ({
 }))`
   margin-top: 25%;
   align-self: center;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.light.secondary};
 `
 
 export const Text = styled.View`
@@ -36,14 +36,14 @@ export const Text = styled.View`
 export const Italic = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
   font-style: italic;
 `
 
 export const Bold = styled.Text`
   font-size: 22px;
   font-family: ${({ theme }) => theme.fonts.bold};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
 `
 
 export const Title = styled.Text`
@@ -52,7 +52,7 @@ export const Title = styled.Text`
   font-size: 34px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
 `
 
 export const Message = styled.Text`
@@ -61,7 +61,7 @@ export const Message = styled.Text`
   font-size: 18px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
 `
 
 export const Buttons = styled.View`

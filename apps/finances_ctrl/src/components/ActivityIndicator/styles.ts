@@ -11,5 +11,5 @@ export const Indicator = styled(ActivityIndicator).attrs((props) => ({
   size: 'large',
   ...props,
 }))`
-  color: ${({ theme }) => theme.colors.secondary };
+  color: ${({ theme }) => theme.light.secondary };
 `

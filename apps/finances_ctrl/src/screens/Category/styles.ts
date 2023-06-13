@@ -18,13 +18,13 @@ export const Header = styled.View`
   height: 114px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.light.primary};
 `
 
 export const Title = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
 `
 
 export const CategoriesList = styled(
@@ -48,13 +48,13 @@ export const CategoryItem = styled(TouchableOpacity).attrs((props) => ({
   width: 100%;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => active ? theme.colors.secondary_light : theme.colors.shape};
+  background-color: ${({ theme, active }) => active ? theme.light.secondary_light : theme.light.shape};
 `
 
 export const Separator = styled.View`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.colors.text}
+  background-color: ${({ theme }) => theme.light.text}
 `
 
 export const Icon = styled(FontAwesome).attrs(props => ({
@@ -67,7 +67,7 @@ export const Icon = styled(FontAwesome).attrs(props => ({
 export const Label = styled.Text`
   font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text_dark};
+  color: ${({ theme }) => theme.light.text_dark};
 `
 
 export const Footer = styled.View`

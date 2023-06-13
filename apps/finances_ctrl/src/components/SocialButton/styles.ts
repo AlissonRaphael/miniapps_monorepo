@@ -9,13 +9,13 @@ export const Button = styled(TouchableOpacity).attrs((props) => ({
   margin-bottom: 12px;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.shape};
+  background-color: ${({ theme }) => theme.light.shape};
 `
 
 export const Logo = styled.View`
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.light.background};
   padding: 16px;
 `
 
@@ -24,5 +24,5 @@ export const Label = styled.Text`
   font-size: 16px;
   text-align: center;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.light.text};
 `

@@ -21,10 +21,10 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
   ...props,
   size: props.size || 18,
 }))`
-  color: ${({ theme }) => theme.colors.title }
+  color: ${({ theme }) => theme.light.title }
 `
 
 export const Title = styled.Text`
   font-size: 20px;
-  color: ${({ theme }) => theme.colors.title }
+  color: ${({ theme }) => theme.light.title }
 `

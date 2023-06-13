@@ -12,7 +12,7 @@ export const Container = styled.View<TypeProps>`
   margin-right: 16px;
 
   background-color: ${({ type, theme }) =>
-    type === 'total' ? theme.colors.secondary : theme.colors.shape
+    type === 'total' ? theme.light.secondary : theme.light.shape
   };
 `
 
@@ -26,7 +26,7 @@ export const Title = styled.Text<TypeProps>`
   font-size: 16px;
 
   color: ${({ type, theme }) =>
-    type === 'total' ? theme.colors.text_invert : theme.colors.text
+    type === 'total' ? theme.light.text_invert : theme.light.text
   };
 `
 
@@ -36,15 +36,15 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
 }))<TypeProps>`
 
   ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.colors.success};
+    color: ${({ theme }) => theme.light.success};
   `}
 
   ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.colors.attention};
+    color: ${({ theme }) => theme.light.attention};
   `}
 
   ${({ type }) => type === 'total' && css`
-    color: ${({ theme }) => theme.colors.shape};
+    color: ${({ theme }) => theme.light.shape};
   `}
 `
 
@@ -56,7 +56,7 @@ export const Amount = styled.Text<TypeProps>`
   margin-top: 42px;
 
   color: ${({ type, theme }) =>
-    type === 'total' ? theme.colors.text_light : theme.colors.text_dark
+    type === 'total' ? theme.light.text_light : theme.light.text_dark
   };
 `
 
@@ -65,6 +65,6 @@ export const LastTransaction = styled.Text<TypeProps>`
   font-size: 14px;
 
   color: ${({ type, theme }) =>
-    type === 'total' ? theme.colors.text_invert : theme.colors.text
+    type === 'total' ? theme.light.text_invert : theme.light.text
   };
 `

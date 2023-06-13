@@ -10,17 +10,17 @@ export const Input = styled(TextInput)<InputProps>`
   padding: 16px 18px;
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.text_dark};
-  background-color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.text_dark};
+  background-color: ${({ theme }) => theme.light.shape};
 
   ${({ error }) => error && css`
-    border: 1px solid ${({ theme }) => theme.colors.attention}
+    border: 1px solid ${({ theme }) => theme.light.attention}
   `};
 `
 
 export const Error = styled.Text`
   font-size: 12px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.attention};
+  color: ${({ theme }) => theme.light.attention};
   margin-bottom: 8px;
 `

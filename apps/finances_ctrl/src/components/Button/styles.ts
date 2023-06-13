@@ -10,11 +10,11 @@ export const Button = styled(TouchableOpacity).attrs((props) => ({
   padding: 18px;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.light.secondary};
 `
 
 export const Label = styled.Text`
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.medium};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme }) => theme.light.shape};
 `

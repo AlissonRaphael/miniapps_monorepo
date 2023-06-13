@@ -13,7 +13,7 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.shape};
+  background-color: ${({ theme }) => theme.light.shape};
 `
 
 export const Category = styled.View`
@@ -35,12 +35,12 @@ interface TitleProps {
 export const Title = styled.Text<TitleProps>`
   font-size: 14px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme, selected }) => selected ? theme.colors.text_dark : theme.colors.text};
+  color: ${({ theme, selected }) => selected ? theme.light.text_dark : theme.light.text};
 `
 
 export const Chevron = styled(FontAwesome).attrs((props) => ({
   ...props,
   name: props.name || "chevron-down",
 }))`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.light.text};
 `

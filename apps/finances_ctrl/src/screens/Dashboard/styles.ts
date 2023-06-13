@@ -8,7 +8,7 @@ import { TransactionListProps } from '.'
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.background };
+  background-color: ${({ theme }) => theme.light.background };
 `
 
 export const Header = styled.View`
@@ -16,7 +16,7 @@ export const Header = styled.View`
   width: 100%;
   height: 40%;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.light.primary};
 `
 
 export const Wrapper = styled.View`
@@ -44,13 +44,13 @@ export const Details = styled.View`
 
 export const Greeting = styled.Text`
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.shape };
+  color: ${({ theme }) => theme.light.shape };
   font-family: ${({ theme }) => theme.fonts.regular };
 `
 
 export const Name = styled.Text`
   font-size: 18px;
-  color: ${({ theme }) => theme.colors.shape };
+  color: ${({ theme }) => theme.light.shape };
   font-family: ${({ theme }) => theme.fonts.bold };
 `
 
@@ -66,7 +66,7 @@ export const LogoutIcon = styled(Ionicons).attrs((props) => ({
   name: 'ios-exit-outline',
   size: 28,
 }))`
-  color: ${({ theme }) => theme.colors.secondary}
+  color: ${({ theme }) => theme.light.secondary}
 `
 
 export const CardsContainer = styled.View`
