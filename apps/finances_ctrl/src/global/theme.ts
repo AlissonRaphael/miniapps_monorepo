@@ -1,7 +1,7 @@
 export default {
   light: {
-    primary: '#5636D3',
-    secondary: '#ff872c',
+    primary: '#5d3c6f',
+    secondary: '#e67386',
     secondary_light: 'rgba(255,135,44,0.3)',
     success: '#12A454',
     success_light: 'rgba(18,164,84,0.5)',
@@ -13,23 +13,23 @@ export default {
     text_invert: '#f0f0f0',
     text_light: '#ffffff',
     text_dark: '#000000',
-    background: '#F0F2F5'
+    background: '#f8f8f8'
   },
   dark: {
-    primary: '#5636D3',
-    secondary: '#ff872c',
+    primary: '#32203c',
+    secondary: '#994c59',
     secondary_light: 'rgba(255,135,44,0.3)',
     success: '#12A454',
     success_light: 'rgba(18,164,84,0.5)',
-    attention: '#E83F5B',
+    attention: '#a82d41',
     attention_light: 'rgba(232,63,91,0.5)',
-    shape: '#fff',
+    shape: '#161616',
     title: '#363f5f',
-    text: '#969CB2',
-    text_invert: '#f0f0f0',
-    text_light: '#ffffff',
-    text_dark: '#000000',
-    background: '#F0F2F5'
+    text: '#bec4d5',
+    text_invert: '#28292d',
+    text_light: '#000',
+    text_dark: '#ffffff',
+    background: '#1d1e20'
   },
   fonts: {
     regular: 'Poppins_400Regular',
