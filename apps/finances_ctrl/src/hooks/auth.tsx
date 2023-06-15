@@ -11,6 +11,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 interface AuthProviderProps {
   children: ReactNode,
+  setTheme: () => void,
 }
 
 interface User {
@@ -25,6 +26,7 @@ interface AuthContextProps {
   googleSignIn: () => void,
   appleSignIn: () => void,
   signOut: () => void,
+  setTheme: () => void,
 }
 
 const AuthContext = createContext({} as AuthContextProps)
@@ -33,7 +35,7 @@ export function useAuth(){
   return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export function AuthProvider({ children, setTheme }: AuthProviderProps) {
   const [token, setToken] = useState<string | undefined>()
   const [user, setUser] = useState<User>({} as User)
 
@@ -108,7 +110,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn: promptAsync, appleSignIn, signOut }}>
+    <AuthContext.Provider value={{ user, googleSignIn: promptAsync, appleSignIn, signOut, setTheme }}>
       {children}
     </AuthContext.Provider>
   )
