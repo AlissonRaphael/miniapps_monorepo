@@ -1,5 +1,11 @@
-export default {
-  light: {
+const fonts = {
+  regular: 'Poppins_400Regular',
+  medium: 'Poppins_500Medium',
+  bold: 'Poppins_700Bold',
+}
+
+export const LightTheme = {
+  colors: {
     primary: '#5d3c6f',
     secondary: '#e67386',
     secondary_light: 'rgba(255,135,44,0.3)',
@@ -15,7 +21,11 @@ export default {
     text_dark: '#000000',
     background: '#f8f8f8'
   },
-  dark: {
+  fonts,
+}
+
+export const DarkTheme = {
+  colors: {
     primary: '#32203c',
     secondary: '#994c59',
     secondary_light: 'rgba(255,135,44,0.3)',
@@ -31,9 +41,5 @@ export default {
     text_dark: '#ffffff',
     background: '#1d1e20'
   },
-  fonts: {
-    regular: 'Poppins_400Regular',
-    medium: 'Poppins_500Medium',
-    bold: 'Poppins_700Bold',
-  }
+  fonts,
 }
