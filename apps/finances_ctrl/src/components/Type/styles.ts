@@ -14,7 +14,7 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
 }))<TypeFormProps>`
   margin: 8px 0;
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.light.text};
+  border: 1px solid ${({ theme }) => theme.color.text};
   width: 49%;
   padding: 16px;
   flex-direction: row;
@@ -22,12 +22,12 @@ export const Container = styled(TouchableOpacity).attrs((props) => ({
   justify-content: center;
 
   ${({ checked, type }) => type === 'deposit' && checked && css`
-    background-color: ${({ theme }) => theme.light.success_light};
+    background-color: ${({ theme }) => theme.color.success_light};
     border: none;
   `}
 
   ${({ checked, type }) => type === 'withdrawal' && checked && css`
-    background-color: ${({ theme }) => theme.light.attention_light};
+    background-color: ${({ theme }) => theme.color.attention_light};
     border: none;
   `}
 `
@@ -39,11 +39,11 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
   margin-right: 12px;
 
   ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.light.success};
+    color: ${({ theme }) => theme.color.success};
   `}
 
   ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.light.attention};
+    color: ${({ theme }) => theme.color.attention};
   `}
 `
 

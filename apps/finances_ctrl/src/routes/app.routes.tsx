@@ -13,8 +13,8 @@ export default function AppRoutes () {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.light.secondary,
-        tabBarInactiveTintColor: theme.light.text,
+        tabBarActiveTintColor: theme.color.secondary,
+        tabBarInactiveTintColor: theme.color.text,
         tabBarLabelPosition: 'beside-icon',
         tabBarStyle: { paddingBottom: isIphoneX() ? getBottomSpace() : 0 },
         headerShown: false,

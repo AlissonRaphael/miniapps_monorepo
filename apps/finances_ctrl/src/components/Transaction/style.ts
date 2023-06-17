@@ -6,7 +6,7 @@ interface TypeProps {
 }
 
 export const Container = styled.View`
-  background-color: ${({ theme }) => theme.light.shape};
+  background-color: ${({ theme }) => theme.color.shape};
   border-radius: 6px;
   padding: 18px 24px;
   margin-bottom: 16px;
@@ -23,11 +23,11 @@ export const Amount = styled.Text<TypeProps>`
   margin-top: 2px;
 
   ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.light.success};
+    color: ${({ theme }) => theme.color.success};
   `}
 
   ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.light.attention};
+    color: ${({ theme }) => theme.color.attention};
   `}
 `
 
@@ -49,21 +49,21 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
 }))<TypeProps>`
 
   ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.light.success};
+    color: ${({ theme }) => theme.color.success};
   `}
 
   ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.light.attention};
+    color: ${({ theme }) => theme.color.attention};
   `}
 `
 
 export const Category = styled.Text`
   font-size: 14px;
-  color: ${({ theme }) => theme.light.text};
+  color: ${({ theme }) => theme.color.text};
   margin-left: 10px;
 `
 
 export const TransactionDate = styled.Text`
   font-size: 14px;
-  color: ${({ theme }) => theme.light.text};
+  color: ${({ theme }) => theme.color.text};
 `

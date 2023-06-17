@@ -22,7 +22,7 @@ export const Item = styled.View<ItemProps>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.light.shape};
+  background-color: ${({ theme }) => theme.color.shape};
 `
 
 export const Title = styled.Text`
@@ -51,10 +51,10 @@ export const Icon = styled(FontAwesome).attrs((props) => ({
 }))<TypeProps>`
 
   ${({ type }) => type === 'deposit' && css`
-    color: ${({ theme }) => theme.light.success};
+    color: ${({ theme }) => theme.color.success};
   `}
 
   ${({ type }) => type === 'withdrawal' && css`
-    color: ${({ theme }) => theme.light.attention};
+    color: ${({ theme }) => theme.color.attention};
   `}
 `

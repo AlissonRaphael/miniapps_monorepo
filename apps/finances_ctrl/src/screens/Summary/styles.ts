@@ -4,7 +4,7 @@ import { StatusBarHeightHelper, BottomHeightHelper } from '../../global/statusba
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.light.background };
+  background-color: ${({ theme }) => theme.color.background };
 `
 
 export const Header = styled.View`
@@ -14,13 +14,13 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.light.primary};
+  background-color: ${({ theme }) => theme.color.primary};
 `
 
 export const Title = styled.Text`
   font-size: 18px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.light.shape};
+  color: ${({ theme }) => theme.color.shape};
 `
 
 export const Content = styled.View`
@@ -33,5 +33,5 @@ export const Text = styled.Text`
   font-size: 14px;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.light.text};
+  color: ${({ theme }) => theme.color.text};
 `
