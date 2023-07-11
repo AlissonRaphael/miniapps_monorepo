@@ -11,7 +11,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 interface AuthProviderProps {
   children: ReactNode,
-  setTheme: () => void,
+  setTheme: (theme: string) => void,
 }
 
 interface User {
@@ -26,7 +26,7 @@ interface AuthContextProps {
   googleSignIn: () => void,
   appleSignIn: () => void,
   signOut: () => void,
-  setTheme: () => void,
+  setTheme: (theme: string) => void,
 }
 
 const AuthContext = createContext({} as AuthContextProps)
