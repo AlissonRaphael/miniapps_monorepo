@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import { isIphoneX, getBottomSpace } from 'react-native-iphone-x-helper';
 
-import theme from '../global/theme';
+import { Theme } from '../global/theme';
 import Dashboard from '../screens/Dashboard';
 import Register  from '../screens/Register';
 import Summary from '../screens/Summary';
@@ -13,8 +13,8 @@ export default function AppRoutes () {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.color.secondary,
-        tabBarInactiveTintColor: theme.color.text,
+        tabBarActiveTintColor: Theme.color.secondary,
+        tabBarInactiveTintColor: Theme.color.text,
         tabBarLabelPosition: 'beside-icon',
         tabBarStyle: { paddingBottom: isIphoneX() ? getBottomSpace() : 0 },
         headerShown: false,
